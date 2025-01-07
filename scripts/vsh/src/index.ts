@@ -9,33 +9,33 @@ import { defineLintCommand } from './lint';
 import { definePubLintCommand } from './publint';
 
 try {
-  const vsh = cac('vsh');
+    const vsh = cac('vsh');
 
-  // vsh lint
-  defineLintCommand(vsh);
+    // vsh lint
+    defineLintCommand(vsh);
 
-  // vsh publint
-  definePubLintCommand(vsh);
+    // vsh publint
+    definePubLintCommand(vsh);
 
-  // vsh code-workspace
-  defineCodeWorkspaceCommand(vsh);
+    // vsh code-workspace
+    defineCodeWorkspaceCommand(vsh);
 
-  // vsh check-circular
-  defineCheckCircularCommand(vsh);
+    // vsh check-circular
+    defineCheckCircularCommand(vsh);
 
-  // vsh check-dep
-  defineDepcheckCommand(vsh);
+    // vsh check-dep
+    defineDepcheckCommand(vsh);
 
-  // Invalid command
-  vsh.on('command:*', () => {
-    consola.error(colors.red('Invalid command!'));
-    process.exit(1);
-  });
+    // Invalid command
+    vsh.on('command:*', () => {
+        consola.error(colors.red('Invalid command!'));
+        process.exit(1);
+    });
 
-  vsh.usage('vsh');
-  vsh.help();
-  vsh.parse();
+    vsh.usage('vsh');
+    vsh.help();
+    vsh.parse();
 } catch (error) {
-  consola.error(error);
-  process.exit(1);
+    consola.error(error);
+    process.exit(1);
 }

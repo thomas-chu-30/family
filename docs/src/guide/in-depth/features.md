@@ -14,10 +14,10 @@
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    loginExpiredMode: 'page',
-  },
+    // overrides
+    app: {
+        loginExpiredMode: 'page',
+    },
 });
 ```
 
@@ -33,10 +33,10 @@ export const overridesPreferences = defineOverridesPreferences({
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    loginExpiredMode: 'modal',
-  },
+    // overrides
+    app: {
+        loginExpiredMode: 'modal',
+    },
 });
 ```
 
@@ -48,10 +48,10 @@ export const overridesPreferences = defineOverridesPreferences({
 
 ```ts
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    dynamicTitle: true,
-  },
+    // overrides
+    app: {
+        dynamicTitle: true,
+    },
 });
 ```
 
@@ -63,10 +63,10 @@ export const overridesPreferences = defineOverridesPreferences({
 
 ```ts
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    watermark: true,
-  },
+    // overrides
+    app: {
+        watermark: true,
+    },
 });
 ```
 
@@ -78,7 +78,7 @@ import { useWatermark } from '@vben/hooks';
 const { destroyWatermark, updateWatermark } = useWatermark();
 
 await updateWatermark({
-  // 水印内容
-  content: 'hello my watermark',
+    // 水印内容
+    content: 'hello my watermark',
 });
 ```

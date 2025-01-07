@@ -9,11 +9,11 @@ The project encapsulates a layer of Vite configuration and integrates some plugi
 import { defineConfig } from '@vben/vite-config';
 
 export default defineConfig(async () => {
-  return {
-    application: {},
-    // Vite configuration, override according to the official Vite documentation
-    vite: {},
-  };
+    return {
+        application: {},
+        // Vite configuration, override according to the official Vite documentation
+        vite: {},
+    };
 });
 ```
 
@@ -24,10 +24,10 @@ export default defineConfig(async () => {
 import { defineConfig } from '@vben/vite-config';
 
 export default defineConfig(async () => {
-  return {
-    library: {},
-    // Vite configuration, override according to the official Vite documentation
-    vite: {},
-  };
+    return {
+        library: {},
+        // Vite configuration, override according to the official Vite documentation
+        vite: {},
+    };
 });
 ```

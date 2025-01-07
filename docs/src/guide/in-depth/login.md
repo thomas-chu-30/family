@@ -16,13 +16,13 @@ outline: deep
 
 ```vue {2-7}
 <AuthPageLayout
-  :copyright="true"
-  :toolbar="true"
-  :toolbarList="['color', 'language', 'layout', 'theme']"
-  :app-name="appName"
-  :logo="logo"
-  :page-description="$t('authentication.pageDesc')"
-  :page-title="$t('authentication.pageTitle')"
+    :copyright="true"
+    :toolbar="true"
+    :toolbarList="['color', 'language', 'layout', 'theme']"
+    :app-name="appName"
+    :logo="logo"
+    :page-description="$t('authentication.pageDesc')"
+    :page-title="$t('authentication.pageTitle')"
 >
 </AuthPageLayout>
 ```
@@ -32,10 +32,7 @@ outline: deep
 如果你想调整登录表单的相关内容，你可以在应用下的 `src/views/_core/authentication/login.vue` 内，配置`AuthenticationLogin` 组件参数即可：
 
 ```vue
-<AuthenticationLogin
-  :loading="authStore.loginLoading"
-  @submit="authStore.authLogin"
-/>
+<AuthenticationLogin :loading="authStore.loginLoading" @submit="authStore.authLogin" />
 ```
 
 ::: details AuthenticationLogin 组件参数
@@ -126,13 +123,13 @@ outline: deep
 
 ```ts
 interface HttpResponse<T = any> {
-  /**
-   * 0 表示成功 其他表示失败
-   * 0 means success, others means fail
-   */
-  code: number;
-  data: T;
-  message: string;
+    /**
+     * 0 表示成功 其他表示失败
+     * 0 means success, others means fail
+     */
+    code: number;
+    data: T;
+    message: string;
 }
 ```
 
@@ -144,21 +141,21 @@ interface HttpResponse<T = any> {
 import { defineConfig } from '@vben/vite-config';
 
 export default defineConfig(async () => {
-  return {
-    vite: {
-      server: {
-        proxy: {
-          '/api': {
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, ''),
-            // 这里改为你的真实接口地址
-            target: 'http://localhost:5320/api',
-            ws: true,
-          },
+    return {
+        vite: {
+            server: {
+                proxy: {
+                    '/api': {
+                        changeOrigin: true,
+                        rewrite: (path) => path.replace(/^\/api/, ''),
+                        // 这里改为你的真实接口地址
+                        target: 'http://localhost:5320/api',
+                        ws: true,
+                    },
+                },
+            },
         },
-      },
-    },
-  };
+    };
 });
 ```
 
@@ -175,12 +172,12 @@ export default defineConfig(async () => {
  * 登录
  */
 export async function loginApi(data: AuthApi.LoginParams) {
-  return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
+    return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
 }
 
 /** 只需要保证登录接口返回值有 `accessToken` 字段即可 */
 export interface LoginResult {
-  accessToken: string;
+    accessToken: string;
 }
 ```
 
@@ -190,13 +187,13 @@ export interface LoginResult {
 
 ```ts
 export async function getUserInfoApi() {
-  return requestClient.get<UserInfo>('/user/info');
+    return requestClient.get<UserInfo>('/user/info');
 }
 
 /** 只需要保证登录接口返回值有以下字段即可，多的字段可以自行使用 */
 export interface UserInfo {
-  roles: string[];
-  realName: string;
+    roles: string[];
+    realName: string;
 }
 ```
 
@@ -206,7 +203,7 @@ export interface UserInfo {
 
 ```ts
 export async function getAccessCodesApi() {
-  return requestClient.get<string[]>('/auth/codes');
+    return requestClient.get<string[]>('/auth/codes');
 }
 ```
 
@@ -214,7 +211,7 @@ export async function getAccessCodesApi() {
 
 ```ts {2}
 export async function getAccessCodesApi() {
-  // 这里返回一个空数组即可
-  return [];
+    // 这里返回一个空数组即可
+    return [];
 }
 ```

@@ -35,7 +35,7 @@ app.use(Antd).mount('#app');
 
 ```vue
 <template>
-  <a-button>text</a-button>
+    <a-button>text</a-button>
 </template>
 ```
 
@@ -47,7 +47,7 @@ import { Button } from 'ant-design-vue';
 </script>
 
 <template>
-  <Button>text</Button>
+    <Button>text</Button>
 </template>
 ```
 

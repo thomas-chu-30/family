@@ -19,10 +19,10 @@
 $font-size: 30px;
 
 .box {
-  .title {
-    color: green;
-    font-size: $font-size;
-  }
+    .title {
+        color: green;
+        font-size: $font-size;
+    }
 }
 </style>
 ```
@@ -34,11 +34,11 @@ $font-size: 30px;
 ```vue
 <style scoped>
 .box {
-  --font-size: 30px;
-  .title {
-    color: green;
-    font-size: var(--font-size);
-  }
+    --font-size: 30px;
+    .title {
+        color: green;
+        font-size: var(--font-size);
+    }
 }
 </style>
 ```
@@ -49,9 +49,9 @@ $font-size: 30px;
 
 ```vue
 <template>
-  <div class="bg-white p-4">
-    <p class="text-green">hello world</p>
-  </div>
+    <div class="bg-white p-4">
+        <p class="text-green">hello world</p>
+    </div>
 </template>
 ```
 
@@ -66,23 +66,23 @@ import { useNamespace } from '@vben/hooks';
 const { b, e, is } = useNamespace('menu');
 </script>
 <template>
-  <div :class="[b()]">
-    <div :class="[e('item'), is('active', true)]">item1</div>
-  </div>
+    <div :class="[b()]">
+        <div :class="[e('item'), is('active', true)]">item1</div>
+    </div>
 </template>
 <style lang="scss" scoped>
 // 如果你在应用内使用，这行代码可以省略，已经在所有的应用内全局引入了
 @use '@vben/styles/global' as *;
 @include b('menu') {
-  color: black;
+    color: black;
 
-  @include e('item') {
-    background-color: black;
+    @include e('item') {
+        background-color: black;
 
-    @include is('active') {
-      background-color: red;
+        @include is('active') {
+            background-color: red;
+        }
     }
-  }
 }
 </style>
 ```
@@ -93,12 +93,12 @@ const { b, e, is } = useNamespace('menu');
 
 ```vue
 <template>
-  <p :class="$style.red">This should be red</p>
+    <p :class="$style.red">This should be red</p>
 </template>
 
 <style module>
 .red {
-  color: red;
+    color: red;
 }
 </style>
 ```

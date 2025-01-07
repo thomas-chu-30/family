@@ -64,8 +64,8 @@ Drawer 内的内容一般业务中，会比较复杂，所以我们可以将 dra
 // Drawer 为弹窗组件
 // drawerApi 为弹窗的方法
 const [Drawer, drawerApi] = useVbenDrawer({
-  // 属性
-  // 事件
+    // 属性
+    // 事件
 });
 ```
 
@@ -73,34 +73,34 @@ const [Drawer, drawerApi] = useVbenDrawer({
 
 所有属性都可以传入 `useVbenDrawer` 的第一个参数中。
 
-| 属性名 | 描述 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| appendToMain | 是否挂载到内容区域（默认挂载到body） | `boolean` | `false` |
-| connectedComponent | 连接另一个Modal组件 | `Component` | - |
-| destroyOnClose | 关闭时销毁`connectedComponent` | `boolean` | `false` |
-| title | 标题 | `string\|slot` | - |
-| titleTooltip | 标题提示信息 | `string\|slot` | - |
-| description | 描述信息 | `string\|slot` | - |
-| isOpen | 弹窗打开状态 | `boolean` | `false` |
-| loading | 弹窗加载状态 | `boolean` | `false` |
-| closable | 显示关闭按钮 | `boolean` | `true` |
-| closeIconPlacement | 关闭按钮位置 | `'left'\|'right'` | `right` |
-| modal | 显示遮罩 | `boolean` | `true` |
-| header | 显示header | `boolean` | `true` |
-| footer | 显示footer | `boolean\|slot` | `true` |
-| confirmLoading | 确认按钮loading状态 | `boolean` | `false` |
-| closeOnClickModal | 点击遮罩关闭弹窗 | `boolean` | `true` |
-| closeOnPressEscape | esc 关闭弹窗 | `boolean` | `true` |
-| confirmText | 确认按钮文本 | `string\|slot` | `确认` |
-| cancelText | 取消按钮文本 | `string\|slot` | `取消` |
-| placement | 抽屉弹出位置 | `'left'\|'right'\|'top'\|'bottom'` | `right` |
-| showCancelButton | 显示取消按钮 | `boolean` | `true` |
-| showConfirmButton | 显示确认按钮文本 | `boolean` | `true` |
-| class | modal的class，宽度通过这个配置 | `string` | - |
-| contentClass | modal内容区域的class | `string` | - |
-| footerClass | modal底部区域的class | `string` | - |
-| headerClass | modal顶部区域的class | `string` | - |
-| zIndex | 抽屉的ZIndex层级 | `number` | `1000` |
+| 属性名             | 描述                                 | 类型                               | 默认值  |
+| ------------------ | ------------------------------------ | ---------------------------------- | ------- |
+| appendToMain       | 是否挂载到内容区域（默认挂载到body） | `boolean`                          | `false` |
+| connectedComponent | 连接另一个Modal组件                  | `Component`                        | -       |
+| destroyOnClose     | 关闭时销毁`connectedComponent`       | `boolean`                          | `false` |
+| title              | 标题                                 | `string\|slot`                     | -       |
+| titleTooltip       | 标题提示信息                         | `string\|slot`                     | -       |
+| description        | 描述信息                             | `string\|slot`                     | -       |
+| isOpen             | 弹窗打开状态                         | `boolean`                          | `false` |
+| loading            | 弹窗加载状态                         | `boolean`                          | `false` |
+| closable           | 显示关闭按钮                         | `boolean`                          | `true`  |
+| closeIconPlacement | 关闭按钮位置                         | `'left'\|'right'`                  | `right` |
+| modal              | 显示遮罩                             | `boolean`                          | `true`  |
+| header             | 显示header                           | `boolean`                          | `true`  |
+| footer             | 显示footer                           | `boolean\|slot`                    | `true`  |
+| confirmLoading     | 确认按钮loading状态                  | `boolean`                          | `false` |
+| closeOnClickModal  | 点击遮罩关闭弹窗                     | `boolean`                          | `true`  |
+| closeOnPressEscape | esc 关闭弹窗                         | `boolean`                          | `true`  |
+| confirmText        | 确认按钮文本                         | `string\|slot`                     | `确认`  |
+| cancelText         | 取消按钮文本                         | `string\|slot`                     | `取消`  |
+| placement          | 抽屉弹出位置                         | `'left'\|'right'\|'top'\|'bottom'` | `right` |
+| showCancelButton   | 显示取消按钮                         | `boolean`                          | `true`  |
+| showConfirmButton  | 显示确认按钮文本                     | `boolean`                          | `true`  |
+| class              | modal的class，宽度通过这个配置       | `string`                           | -       |
+| contentClass       | modal内容区域的class                 | `string`                           | -       |
+| footerClass        | modal底部区域的class                 | `string`                           | -       |
+| headerClass        | modal顶部区域的class                 | `string`                           | -       |
+| zIndex             | 抽屉的ZIndex层级                     | `number`                           | `1000`  |
 
 ::: info appendToMain
 
@@ -112,14 +112,14 @@ const [Drawer, drawerApi] = useVbenDrawer({
 
 以下事件，只有在 `useVbenDrawer({onCancel:()=>{}})` 中传入才会生效。
 
-| 事件名 | 描述 | 类型 | 版本限制 |
-| --- | --- | --- | --- |
-| onBeforeClose | 关闭前触发，返回 `false`则禁止关闭 | `()=>boolean` | --- |
-| onCancel | 点击取消按钮触发 | `()=>void` | --- |
-| onClosed | 关闭动画播放完毕时触发 | `()=>void` | >5.5.2 |
-| onConfirm | 点击确认按钮触发 | `()=>void` | --- |
-| onOpenChange | 关闭或者打开弹窗时触发 | `(isOpen:boolean)=>void` | --- |
-| onOpened | 打开动画播放完毕时触发 | `()=>void` | >5.5.2 |
+| 事件名        | 描述                               | 类型                     | 版本限制 |
+| ------------- | ---------------------------------- | ------------------------ | -------- |
+| onBeforeClose | 关闭前触发，返回 `false`则禁止关闭 | `()=>boolean`            | ---      |
+| onCancel      | 点击取消按钮触发                   | `()=>void`               | ---      |
+| onClosed      | 关闭动画播放完毕时触发             | `()=>void`               | >5.5.2   |
+| onConfirm     | 点击确认按钮触发                   | `()=>void`               | ---      |
+| onOpenChange  | 关闭或者打开弹窗时触发             | `(isOpen:boolean)=>void` | ---      |
+| onOpened      | 打开动画播放完毕时触发             | `()=>void`               | >5.5.2   |
 
 ### Slots
 
@@ -135,11 +135,11 @@ const [Drawer, drawerApi] = useVbenDrawer({
 
 ### modalApi
 
-| 事件名 | 描述 | 类型 |
-| --- | --- | --- |
+| 事件名   | 描述                 | 类型                                           |
+| -------- | -------------------- | ---------------------------------------------- |
 | setState | 动态设置弹窗状态属性 | `setState(props) \| setState((prev)=>(props))` |
-| open | 打开弹窗 | `()=>void` |
-| close | 关闭弹窗 | `()=>void` |
-| setData | 设置共享数据 | `<T>(data:T)=>void` |
-| getData | 获取共享数据 | `<T>()=>T` |
-| useStore | 获取可响应式状态 | - |
+| open     | 打开弹窗             | `()=>void`                                     |
+| close    | 关闭弹窗             | `()=>void`                                     |
+| setData  | 设置共享数据         | `<T>(data:T)=>void`                            |
+| getData  | 获取共享数据         | `<T>()=>T`                                     |
+| useStore | 获取可响应式状态     | -                                              |

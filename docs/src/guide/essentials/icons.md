@@ -32,8 +32,8 @@ import { MdiKeyboardEsc } from '@vben/icons';
 </script>
 
 <template>
-  <!-- 一个宽高为20px的图标 -->
-  <MdiKeyboardEsc class="size-5" />
+    <!-- 一个宽高为20px的图标 -->
+    <MdiKeyboardEsc class="size-5" />
 </template>
 ```
 
@@ -62,8 +62,8 @@ import { SvgTestIcon } from '@vben/icons';
 </script>
 
 <template>
-  <!-- 一个宽高为20px的图标 -->
-  <SvgTestIcon class="size-5" />
+    <!-- 一个宽高为20px的图标 -->
+    <SvgTestIcon class="size-5" />
 </template>
 ```
 

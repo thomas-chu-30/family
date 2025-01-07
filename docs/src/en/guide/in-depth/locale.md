@@ -14,9 +14,9 @@ You just need to override the default preferences. In the corresponding applicat
 
 ```ts {3}
 export const overridesPreferences = defineOverridesPreferences({
-  app: {
-    locale: 'en-US',
-  },
+    app: {
+        locale: 'en-US',
+    },
 });
 ```
 
@@ -33,15 +33,15 @@ import { loadLocaleMessages } from '@vben/locales';
 import { updatePreferences } from '@vben/preferences';
 
 async function updateLocale(value: string) {
-  // 1. Update preferences
-  const locale = value as SupportedLanguagesType;
-  updatePreferences({
-    app: {
-      locale,
-    },
-  });
-  // 2. Load the corresponding language pack
-  await loadLocaleMessages(locale);
+    // 1. Update preferences
+    const locale = value as SupportedLanguagesType;
+    updatePreferences({
+        app: {
+            locale,
+        },
+    });
+    // 2. Load the corresponding language pack
+    await loadLocaleMessages(locale);
 }
 
 updateLocale('en-US');
@@ -94,10 +94,10 @@ import { $t } from '@vben/locales';
 const items = computed(() => [{ title: $t('about.desc') }]);
 </script>
 <template>
-  <div>{{ $t('about.desc') }}</div>
-  <template v-for="item in items.value">
-    <div>{{ item.title }}</div>
-  </template>
+    <div>{{ $t('about.desc') }}</div>
+    <template v-for="item in items.value">
+        <div>{{ item.title }}</div>
+    </template>
 </template>
 ```
 
@@ -109,34 +109,34 @@ If you need to add a new language pack, follow these steps:
 - In the corresponding application, locate the `src/locales/langs` file and add the new language pack `zh-TW.json`.
 - Add the corresponding language in `packages/constants/src/core.ts`:
 
-  ```ts
-  export interface LanguageOption {
-    label: string;
-    value: 'en-US' | 'zh-CN'; // [!code --]
-    value: 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
-  }
-  export const SUPPORT_LANGUAGES: LanguageOption[] = [
-    {
-      label: '简体中文',
-      value: 'zh-CN',
-    },
-    {
-      label: 'English',
-      value: 'en-US',
-    },
-    {
-      label: '繁体中文', // [!code ++]
-      value: 'zh-TW', // [!code ++]
-    },
-  ];
-  ```
+    ```ts
+    export interface LanguageOption {
+        label: string;
+        value: 'en-US' | 'zh-CN'; // [!code --]
+        value: 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
+    }
+    export const SUPPORT_LANGUAGES: LanguageOption[] = [
+        {
+            label: '简体中文',
+            value: 'zh-CN',
+        },
+        {
+            label: 'English',
+            value: 'en-US',
+        },
+        {
+            label: '繁体中文', // [!code ++]
+            value: 'zh-TW', // [!code ++]
+        },
+    ];
+    ```
 
 - In `packages/locales/typing.ts`, add a new TypeScript type:
 
-  ```ts
-  export type SupportedLanguagesType = 'en-US' | 'zh-CN'; // [!code --]
-  export type SupportedLanguagesType = 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
-  ```
+    ```ts
+    export type SupportedLanguagesType = 'en-US' | 'zh-CN'; // [!code --]
+    export type SupportedLanguagesType = 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
+    ```
 
 At this point, you can use the newly added language pack in the project.
 
@@ -146,9 +146,9 @@ If you want to disable the language switching display button on the interface, i
 
 ```ts {3}
 export const overridesPreferences = defineOverridesPreferences({
-  widget: {
-    languageToggle: false,
-  },
+    widget: {
+        languageToggle: false,
+    },
 });
 ```
 
@@ -164,12 +164,12 @@ Each application has an independent language pack that can override the general 
 
 ```ts {3-4}
 async function loadMessages(lang: SupportedLanguagesType) {
-  const [appLocaleMessages] = await Promise.all([
-    // Modify here to load data via a remote interface
-    localesMap[lang](),
-    loadThirdPartyMessage(lang),
-  ]);
-  return appLocaleMessages.default;
+    const [appLocaleMessages] = await Promise.all([
+        // Modify here to load data via a remote interface
+        localesMap[lang](),
+        loadThirdPartyMessage(lang),
+    ]);
+    return appLocaleMessages.default;
 }
 ```
 
@@ -183,26 +183,26 @@ Different applications may use third-party component libraries or plugins with v
  * @param lang
  */
 async function loadDayjsLocale(lang: SupportedLanguagesType) {
-  let locale;
-  switch (lang) {
-    case 'zh-CN': {
-      locale = await import('dayjs/locale/zh-cn');
-      break;
+    let locale;
+    switch (lang) {
+        case 'zh-CN': {
+            locale = await import('dayjs/locale/zh-cn');
+            break;
+        }
+        case 'en-US': {
+            locale = await import('dayjs/locale/en');
+            break;
+        }
+        // Default to using English
+        default: {
+            locale = await import('dayjs/locale/en');
+        }
     }
-    case 'en-US': {
-      locale = await import('dayjs/locale/en');
-      break;
+    if (locale) {
+        dayjs.locale(locale);
+    } else {
+        console.error(`Failed to load dayjs locale for ${lang}`);
     }
-    // Default to using English
-    default: {
-      locale = await import('dayjs/locale/en');
-    }
-  }
-  if (locale) {
-    dayjs.locale(locale);
-  } else {
-    console.error(`Failed to load dayjs locale for ${lang}`);
-  }
 }
 ```
 
@@ -214,14 +214,14 @@ Firstly, it is not recommended to remove internationalization, as it is a good d
 - Modify the default language, see: [Configure Default Language](#configure-default-language)
 - Disable `vue-i18n` warning prompts, in the `src/locales/index.ts` file, modify `missingWarn` to `false`:
 
-  ```ts
-  async function setupI18n(app: App, options: LocaleSetupOptions = {}) {
-    await coreSetup(app, {
-      defaultLocale: preferences.app.locale,
-      loadMessages,
-      missingWarn: !import.meta.env.PROD, // [!code --]
-      missingWarn: false, // [!code ++]
-      ...options,
-    });
-  }
-  ```
+    ```ts
+    async function setupI18n(app: App, options: LocaleSetupOptions = {}) {
+        await coreSetup(app, {
+            defaultLocale: preferences.app.locale,
+            loadMessages,
+            missingWarn: !import.meta.env.PROD, // [!code --]
+            missingWarn: false, // [!code ++]
+            ...options,
+        });
+    }
+    ```

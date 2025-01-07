@@ -2,9 +2,9 @@
 import { useVbenModal } from '@vben/common-ui';
 
 const [Modal] = useVbenModal({
-  draggable: true,
+    draggable: true,
 });
 </script>
 <template>
-  <Modal title="拖拽示例"> modal content </Modal>
+    <Modal title="拖拽示例"> modal content </Modal>
 </template>

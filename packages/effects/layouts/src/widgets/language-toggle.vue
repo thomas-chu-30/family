@@ -9,30 +9,30 @@ import { preferences, updatePreferences } from '@vben/preferences';
 import { VbenDropdownRadioMenu, VbenIconButton } from '@vben-core/shadcn-ui';
 
 defineOptions({
-  name: 'LanguageToggle',
+    name: 'LanguageToggle',
 });
 
 async function handleUpdate(value: string) {
-  const locale = value as SupportedLanguagesType;
-  updatePreferences({
-    app: {
-      locale,
-    },
-  });
-  await loadLocaleMessages(locale);
+    const locale = value as SupportedLanguagesType;
+    updatePreferences({
+        app: {
+            locale,
+        },
+    });
+    await loadLocaleMessages(locale);
 }
 </script>
 
 <template>
-  <div>
-    <VbenDropdownRadioMenu
-      :menus="SUPPORT_LANGUAGES"
-      :model-value="preferences.app.locale"
-      @update:model-value="handleUpdate"
-    >
-      <VbenIconButton>
-        <Languages class="text-foreground size-4" />
-      </VbenIconButton>
-    </VbenDropdownRadioMenu>
-  </div>
+    <div>
+        <VbenDropdownRadioMenu
+            :menus="SUPPORT_LANGUAGES"
+            :model-value="preferences.app.locale"
+            @update:model-value="handleUpdate"
+        >
+            <VbenIconButton>
+                <Languages class="text-foreground size-4" />
+            </VbenIconButton>
+        </VbenDropdownRadioMenu>
+    </div>
 </template>

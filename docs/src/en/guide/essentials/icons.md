@@ -32,8 +32,8 @@ import { MdiKeyboardEsc } from '@vben/icons';
 </script>
 
 <template>
-  <!-- An icon with a width and height of 20px -->
-  <MdiKeyboardEsc class="size-5" />
+    <!-- An icon with a width and height of 20px -->
+    <MdiKeyboardEsc class="size-5" />
 </template>
 ```
 
@@ -62,8 +62,8 @@ import { SvgTestIcon } from '@vben/icons';
 </script>
 
 <template>
-  <!-- An icon with a width and height of 20px -->
-  <SvgTestIcon class="size-5" />
+    <!-- An icon with a width and height of 20px -->
+    <SvgTestIcon class="size-5" />
 </template>
 ```
 

@@ -25,11 +25,11 @@ Adjust `preferences.ts` in the corresponding application directory to ensure `ac
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    // Default value, optional
-    accessMode: 'frontend',
-  },
+    // overrides
+    app: {
+        // Default value, optional
+        accessMode: 'frontend',
+    },
 });
 ```
 
@@ -85,10 +85,10 @@ Adjust `preferences.ts` in the corresponding application directory to ensure `ac
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    accessMode: 'backend',
-  },
+    // overrides
+    app: {
+        accessMode: 'backend',
+    },
 });
 ```
 
@@ -98,12 +98,12 @@ You can look under `src/router/access.ts` in the application to find the followi
 
 ```ts
 async function generateAccess(options: GenerateMenuAndRoutesOptions) {
-  return await generateAccessible(preferences.app.accessMode, {
-    fetchMenuListAsync: async () => {
-      // This interface is for the menu data returned by the backend
-      return await getAllMenus();
-    },
-  });
+    return await generateAccessible(preferences.app.accessMode, {
+        fetchMenuListAsync: async () => {
+            // This interface is for the menu data returned by the backend
+            return await getAllMenus();
+        },
+    });
 }
 ```
 
@@ -113,37 +113,37 @@ async function generateAccess(options: GenerateMenuAndRoutesOptions) {
 
 ```ts
 const dashboardMenus = [
-  {
-    // Here, 'BasicLayout' is hardcoded and cannot be changed
-    component: 'BasicLayout',
-    meta: {
-      order: -1,
-      title: 'page.dashboard.title',
+    {
+        // Here, 'BasicLayout' is hardcoded and cannot be changed
+        component: 'BasicLayout',
+        meta: {
+            order: -1,
+            title: 'page.dashboard.title',
+        },
+        name: 'Dashboard',
+        path: '/',
+        redirect: '/analytics',
+        children: [
+            {
+                name: 'Analytics',
+                path: '/analytics',
+                // Here is the path of the page, need to remove 'views/' and '.vue'
+                component: '/dashboard/analytics/index',
+                meta: {
+                    affixTab: true,
+                    title: 'page.dashboard.analytics',
+                },
+            },
+            {
+                name: 'Workspace',
+                path: '/workspace',
+                component: '/dashboard/workspace/index',
+                meta: {
+                    title: 'page.dashboard.workspace',
+                },
+            },
+        ],
     },
-    name: 'Dashboard',
-    path: '/',
-    redirect: '/analytics',
-    children: [
-      {
-        name: 'Analytics',
-        path: '/analytics',
-        // Here is the path of the page, need to remove 'views/' and '.vue'
-        component: '/dashboard/analytics/index',
-        meta: {
-          affixTab: true,
-          title: 'page.dashboard.analytics',
-        },
-      },
-      {
-        name: 'Workspace',
-        path: '/workspace',
-        component: '/dashboard/workspace/index',
-        meta: {
-          title: 'page.dashboard.workspace',
-        },
-      },
-    ],
-  },
 ];
 ```
 
@@ -160,10 +160,7 @@ In some cases, we need to control the display of buttons with fine granularity. 
 The permission code is the code returned by the interface. The logic to determine whether a button is displayed is located under `src/store/auth`:
 
 ```ts
-const [fetchUserInfoResult, accessCodes] = await Promise.all([
-  fetchUserInfo(),
-  getAccessCodes(),
-]);
+const [fetchUserInfoResult, accessCodes] = await Promise.all([fetchUserInfo(), getAccessCodes()]);
 
 userInfo = fetchUserInfoResult;
 authStore.setUserInfo(userInfo);
@@ -186,21 +183,19 @@ const { accessMode, hasAccessByCodes } = useAccess();
 </script>
 
 <template>
-  <!-- You need to specify type="code" -->
-  <AccessControl :codes="['AC_100100']" type="code">
-    <Button> Visible to Super account ["AC_1000001"] </Button>
-  </AccessControl>
-  <AccessControl :codes="['AC_100030']" type="code">
-    <Button> Visible to Admin account ["AC_100010"] </Button>
-  </AccessControl>
-  <AccessControl :codes="['AC_1000001']" type="code">
-    <Button> Visible to User account ["AC_1000001"] </Button>
-  </AccessControl>
-  <AccessControl :codes="['AC_100100', 'AC_100010']" type="code">
-    <Button>
-      Visible to Super & Admin account ["AC_100100","AC_1000001"]
-    </Button>
-  </AccessControl>
+    <!-- You need to specify type="code" -->
+    <AccessControl :codes="['AC_100100']" type="code">
+        <Button> Visible to Super account ["AC_1000001"] </Button>
+    </AccessControl>
+    <AccessControl :codes="['AC_100030']" type="code">
+        <Button> Visible to Admin account ["AC_100010"] </Button>
+    </AccessControl>
+    <AccessControl :codes="['AC_1000001']" type="code">
+        <Button> Visible to User account ["AC_1000001"] </Button>
+    </AccessControl>
+    <AccessControl :codes="['AC_100100', 'AC_100010']" type="code">
+        <Button> Visible to Super & Admin account ["AC_100100","AC_1000001"] </Button>
+    </AccessControl>
 </template>
 ```
 
@@ -214,18 +209,12 @@ const { hasAccessByCodes } = useAccess();
 </script>
 
 <template>
-  <Button v-if="hasAccessByCodes(['AC_100100'])">
-    Visible to Super account ["AC_1000001"]
-  </Button>
-  <Button v-if="hasAccessByCodes(['AC_100030'])">
-    Visible to Admin account ["AC_100010"]
-  </Button>
-  <Button v-if="hasAccessByCodes(['AC_1000001'])">
-    Visible to User account ["AC_1000001"]
-  </Button>
-  <Button v-if="hasAccessByCodes(['AC_100100', 'AC_1000001'])">
-    Visible to Super & Admin account ["AC_100100","AC_1000001"]
-  </Button>
+    <Button v-if="hasAccessByCodes(['AC_100100'])"> Visible to Super account ["AC_1000001"] </Button>
+    <Button v-if="hasAccessByCodes(['AC_100030'])"> Visible to Admin account ["AC_100010"] </Button>
+    <Button v-if="hasAccessByCodes(['AC_1000001'])"> Visible to User account ["AC_1000001"] </Button>
+    <Button v-if="hasAccessByCodes(['AC_100100', 'AC_1000001'])">
+        Visible to Super & Admin account ["AC_100100","AC_1000001"]
+    </Button>
 </template>
 ```
 
@@ -235,18 +224,12 @@ const { hasAccessByCodes } = useAccess();
 
 ```vue
 <template>
-  <Button class="mr-4" v-access:code="'AC_100100'">
-    Visible to Super account 'AC_100100'
-  </Button>
-  <Button class="mr-4" v-access:code="['AC_100030']">
-    Visible to Admin account ["AC_100010"]
-  </Button>
-  <Button class="mr-4" v-access:code="['AC_1000001']">
-    Visible to User account ["AC_1000001"]
-  </Button>
-  <Button class="mr-4" v-access:code="['AC_100100', 'AC_1000001']">
-    Visible to Super & Admin account ["AC_100100","AC_1000001"]
-  </Button>
+    <Button class="mr-4" v-access:code="'AC_100100'"> Visible to Super account 'AC_100100' </Button>
+    <Button class="mr-4" v-access:code="['AC_100030']"> Visible to Admin account ["AC_100010"] </Button>
+    <Button class="mr-4" v-access:code="['AC_1000001']"> Visible to User account ["AC_1000001"] </Button>
+    <Button class="mr-4" v-access:code="['AC_100100', 'AC_1000001']">
+        Visible to Super & Admin account ["AC_100100","AC_1000001"]
+    </Button>
 </template>
 ```
 
@@ -262,18 +245,18 @@ import { AccessControl } from '@vben/access';
 </script>
 
 <template>
-  <AccessControl :codes="['super']">
-    <Button> Visible to Super account </Button>
-  </AccessControl>
-  <AccessControl :codes="['admin']">
-    <Button> Visible to Admin account </Button>
-  </AccessControl>
-  <AccessControl :codes="['user']">
-    <Button> Visible to User account </Button>
-  </AccessControl>
-  <AccessControl :codes="['super', 'admin']">
-    <Button> Super & Visible to Admin account </Button>
-  </AccessControl>
+    <AccessControl :codes="['super']">
+        <Button> Visible to Super account </Button>
+    </AccessControl>
+    <AccessControl :codes="['admin']">
+        <Button> Visible to Admin account </Button>
+    </AccessControl>
+    <AccessControl :codes="['user']">
+        <Button> Visible to User account </Button>
+    </AccessControl>
+    <AccessControl :codes="['super', 'admin']">
+        <Button> Super & Visible to Admin account </Button>
+    </AccessControl>
 </template>
 ```
 
@@ -287,12 +270,10 @@ const { hasAccessByRoles } = useAccess();
 </script>
 
 <template>
-  <Button v-if="hasAccessByRoles(['super'])"> Visible to Super account </Button>
-  <Button v-if="hasAccessByRoles(['admin'])"> Visible to Admin account </Button>
-  <Button v-if="hasAccessByRoles(['user'])"> Visible to User account </Button>
-  <Button v-if="hasAccessByRoles(['super', 'admin'])">
-    Super & Visible to Admin account
-  </Button>
+    <Button v-if="hasAccessByRoles(['super'])"> Visible to Super account </Button>
+    <Button v-if="hasAccessByRoles(['admin'])"> Visible to Admin account </Button>
+    <Button v-if="hasAccessByRoles(['user'])"> Visible to User account </Button>
+    <Button v-if="hasAccessByRoles(['super', 'admin'])"> Super & Visible to Admin account </Button>
 </template>
 ```
 
@@ -302,17 +283,9 @@ const { hasAccessByRoles } = useAccess();
 
 ```vue
 <template>
-  <Button class="mr-4" v-access:role="'super'">
-    Visible to Super account
-  </Button>
-  <Button class="mr-4" v-access:role="['admin']">
-    Visible to Admin account
-  </Button>
-  <Button class="mr-4" v-access:role="['user']">
-    Visible to User account
-  </Button>
-  <Button class="mr-4" v-access:role="['super', 'admin']">
-    Super & Visible to Admin account
-  </Button>
+    <Button class="mr-4" v-access:role="'super'"> Visible to Super account </Button>
+    <Button class="mr-4" v-access:role="['admin']"> Visible to Admin account </Button>
+    <Button class="mr-4" v-access:role="['user']"> Visible to User account </Button>
+    <Button class="mr-4" v-access:role="['super', 'admin']"> Super & Visible to Admin account </Button>
 </template>
 ```

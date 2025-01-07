@@ -8,13 +8,13 @@ When there are updates to the website, you might need to check for updates. The 
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    // Whether to enable check for updates
-    enableCheckUpdates: true,
-    // The interval for checking updates, in minutes
-    checkUpdatesInterval: 1,
-  },
+    // overrides
+    app: {
+        // Whether to enable check for updates
+        enableCheckUpdates: true,
+        // The interval for checking updates, in minutes
+        checkUpdatesInterval: 1,
+    },
 });
 ```
 
@@ -31,18 +31,16 @@ If you need to check for updates in other ways, such as through an API to more f
 ```ts
 // Replace this with your update checking logic
 async function getVersionTag() {
-  try {
-    const response = await fetch('/', {
-      cache: 'no-cache',
-      method: 'HEAD',
-    });
+    try {
+        const response = await fetch('/', {
+            cache: 'no-cache',
+            method: 'HEAD',
+        });
 
-    return (
-      response.headers.get('etag') || response.headers.get('last-modified')
-    );
-  } catch {
-    console.error('Failed to fetch version tag');
-    return null;
-  }
+        return response.headers.get('etag') || response.headers.get('last-modified');
+    } catch {
+        console.error('Failed to fetch version tag');
+        return null;
+    }
 }
 ```

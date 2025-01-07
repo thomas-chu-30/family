@@ -72,32 +72,32 @@ import { BasicLayout } from '#/layouts';
 import { $t } from '#/locales';
 
 const routes: RouteRecordRaw[] = [
-  {
-    component: BasicLayout,
-    meta: {
-      badgeType: 'dot',
-      badgeVariants: 'destructive',
-      icon: VBEN_LOGO_URL,
-      order: 9999,
-      title: $t('page.vben.title'),
-    },
-    name: 'VbenProject',
-    path: '/vben-admin',
-    redirect: '/vben-admin/about',
-    children: [
-      {
-        name: 'VbenAbout',
-        path: '/vben-admin/about',
-        component: () => import('#/views/_core/about/index.vue'),
+    {
+        component: BasicLayout,
         meta: {
-          badgeType: 'dot',
-          badgeVariants: 'destructive',
-          icon: 'lucide:copyright',
-          title: $t('page.vben.about'),
+            badgeType: 'dot',
+            badgeVariants: 'destructive',
+            icon: VBEN_LOGO_URL,
+            order: 9999,
+            title: $t('page.vben.title'),
         },
-      },
-    ],
-  },
+        name: 'VbenProject',
+        path: '/vben-admin',
+        redirect: '/vben-admin/about',
+        children: [
+            {
+                name: 'VbenAbout',
+                path: '/vben-admin/about',
+                component: () => import('#/views/_core/about/index.vue'),
+                meta: {
+                    badgeType: 'dot',
+                    badgeVariants: 'destructive',
+                    icon: 'lucide:copyright',
+                    title: $t('page.vben.about'),
+                },
+            },
+        ],
+    },
 ];
 
 export default routes;
@@ -123,107 +123,106 @@ import { BasicLayout } from '#/layouts';
 import { $t } from '#/locales';
 
 const routes: RouteRecordRaw[] = [
-  {
-    component: BasicLayout,
-    meta: {
-      icon: 'ic:baseline-view-in-ar',
-      keepAlive: true,
-      order: 1000,
-      title: $t('demos.title'),
-    },
-    name: 'Demos',
-    path: '/demos',
-    redirect: '/demos/access',
-    children: [
-      // Nested menu
-      {
+    {
+        component: BasicLayout,
         meta: {
-          icon: 'ic:round-menu',
-          title: $t('demos.nested.title'),
+            icon: 'ic:baseline-view-in-ar',
+            keepAlive: true,
+            order: 1000,
+            title: $t('demos.title'),
         },
-        name: 'NestedDemos',
-        path: '/demos/nested',
-        redirect: '/demos/nested/menu1',
+        name: 'Demos',
+        path: '/demos',
+        redirect: '/demos/access',
         children: [
-          {
-            name: 'Menu1Demo',
-            path: '/demos/nested/menu1',
-            component: () => import('#/views/demos/nested/menu-1.vue'),
-            meta: {
-              icon: 'ic:round-menu',
-              keepAlive: true,
-              title: $t('demos.nested.menu1'),
-            },
-          },
-          {
-            name: 'Menu2Demo',
-            path: '/demos/nested/menu2',
-            meta: {
-              icon: 'ic:round-menu',
-              keepAlive: true,
-              title: $t('demos.nested.menu2'),
-            },
-            redirect: '/demos/nested/menu2/menu2-1',
-            children: [
-              {
-                name: 'Menu21Demo',
-                path: '/demos/nested/menu2/menu2-1',
-                component: () => import('#/views/demos/nested/menu-2-1.vue'),
+            // Nested menu
+            {
                 meta: {
-                  icon: 'ic:round-menu',
-                  keepAlive: true,
-                  title: $t('demos.nested.menu2_1'),
+                    icon: 'ic:round-menu',
+                    title: $t('demos.nested.title'),
                 },
-              },
-            ],
-          },
-          {
-            name: 'Menu3Demo',
-            path: '/demos/nested/menu3',
-            meta: {
-              icon: 'ic:round-menu',
-              title: $t('demos.nested.menu3'),
-            },
-            redirect: '/demos/nested/menu3/menu3-1',
-            children: [
-              {
-                name: 'Menu31Demo',
-                path: 'menu3-1',
-                component: () => import('#/views/demos/nested/menu-3-1.vue'),
-                meta: {
-                  icon: 'ic:round-menu',
-                  keepAlive: true,
-                  title: $t('demos.nested.menu3_1'),
-                },
-              },
-              {
-                name: 'Menu32Demo',
-                path: 'menu3-2',
-                meta: {
-                  icon: 'ic:round-menu',
-                  title: $t('demos.nested.menu3_2'),
-                },
-                redirect: '/demos/nested/menu3/menu3-2/menu3-2-1',
+                name: 'NestedDemos',
+                path: '/demos/nested',
+                redirect: '/demos/nested/menu1',
                 children: [
-                  {
-                    name: 'Menu321Demo',
-                    path: '/demos/nested/menu3/menu3-2/menu3-2-1',
-                    component: () =>
-                      import('#/views/demos/nested/menu-3-2-1.vue'),
-                    meta: {
-                      icon: 'ic:round-menu',
-                      keepAlive: true,
-                      title: $t('demos.nested.menu3_2_1'),
+                    {
+                        name: 'Menu1Demo',
+                        path: '/demos/nested/menu1',
+                        component: () => import('#/views/demos/nested/menu-1.vue'),
+                        meta: {
+                            icon: 'ic:round-menu',
+                            keepAlive: true,
+                            title: $t('demos.nested.menu1'),
+                        },
                     },
-                  },
+                    {
+                        name: 'Menu2Demo',
+                        path: '/demos/nested/menu2',
+                        meta: {
+                            icon: 'ic:round-menu',
+                            keepAlive: true,
+                            title: $t('demos.nested.menu2'),
+                        },
+                        redirect: '/demos/nested/menu2/menu2-1',
+                        children: [
+                            {
+                                name: 'Menu21Demo',
+                                path: '/demos/nested/menu2/menu2-1',
+                                component: () => import('#/views/demos/nested/menu-2-1.vue'),
+                                meta: {
+                                    icon: 'ic:round-menu',
+                                    keepAlive: true,
+                                    title: $t('demos.nested.menu2_1'),
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        name: 'Menu3Demo',
+                        path: '/demos/nested/menu3',
+                        meta: {
+                            icon: 'ic:round-menu',
+                            title: $t('demos.nested.menu3'),
+                        },
+                        redirect: '/demos/nested/menu3/menu3-1',
+                        children: [
+                            {
+                                name: 'Menu31Demo',
+                                path: 'menu3-1',
+                                component: () => import('#/views/demos/nested/menu-3-1.vue'),
+                                meta: {
+                                    icon: 'ic:round-menu',
+                                    keepAlive: true,
+                                    title: $t('demos.nested.menu3_1'),
+                                },
+                            },
+                            {
+                                name: 'Menu32Demo',
+                                path: 'menu3-2',
+                                meta: {
+                                    icon: 'ic:round-menu',
+                                    title: $t('demos.nested.menu3_2'),
+                                },
+                                redirect: '/demos/nested/menu3/menu3-2/menu3-2-1',
+                                children: [
+                                    {
+                                        name: 'Menu321Demo',
+                                        path: '/demos/nested/menu3/menu3-2/menu3-2-1',
+                                        component: () => import('#/views/demos/nested/menu-3-2-1.vue'),
+                                        meta: {
+                                            icon: 'ic:round-menu',
+                                            keepAlive: true,
+                                            title: $t('demos.nested.menu3_2_1'),
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                    },
                 ],
-              },
-            ],
-          },
+            },
         ],
-      },
-    ],
-  },
+    },
 ];
 
 export default routes;
@@ -248,27 +247,27 @@ import { BasicLayout } from '#/layouts';
 import { $t } from '#/locales';
 
 const routes: RouteRecordRaw[] = [
-  {
-    component: BasicLayout,
-    meta: {
-      icon: 'mdi:home',
-      title: $t('page.home.title'),
-    },
-    name: 'Home',
-    path: '/home',
-    redirect: '/home/index',
-    children: [
-      {
-        name: 'HomeIndex',
-        path: '/home/index',
-        component: () => import('#/views/home/index.vue'),
+    {
+        component: BasicLayout,
         meta: {
-          icon: 'mdi:home',
-          title: $t('page.home.index'),
+            icon: 'mdi:home',
+            title: $t('page.home.title'),
         },
-      },
-    ],
-  },
+        name: 'Home',
+        path: '/home',
+        redirect: '/home/index',
+        children: [
+            {
+                name: 'HomeIndex',
+                path: '/home/index',
+                component: () => import('#/views/home/index.vue'),
+                meta: {
+                    icon: 'mdi:home',
+                    title: $t('page.home.index'),
+                },
+            },
+        ],
+    },
 ];
 
 export default routes;
@@ -280,9 +279,9 @@ In `#/views/home/`, add a new `index.vue` file, as follows:
 
 ```vue
 <template>
-  <div>
-    <h1>home page</h1>
-  </div>
+    <div>
+        <h1>home page</h1>
+    </div>
 </template>
 ```
 
@@ -296,14 +295,14 @@ The route configuration items are mainly in the `meta` property of the route obj
 
 ```ts {5-8}
 const routes = [
-  {
-    name: 'HomeIndex',
-    path: '/home/index',
-    meta: {
-      icon: 'mdi:home',
-      title: $t('page.home.index'),
+    {
+        name: 'HomeIndex',
+        path: '/home/index',
+        meta: {
+            icon: 'mdi:home',
+            title: $t('page.home.index'),
+        },
     },
-  },
 ];
 ```
 
@@ -311,117 +310,111 @@ const routes = [
 
 ```ts
 interface RouteMeta {
-  /**
-   * Active icon (menu)
-   */
-  activeIcon?: string;
-  /**
-   * The currently active menu, sometimes you don't want to activate the existing menu, use this to activate the parent menu
-   */
-  activePath?: string;
-  /**
-   * Whether to fix the tab
-   * @default false
-   */
-  affixTab?: boolean;
-  /**
-   * The order of fixed tabs
-   * @default 0
-   */
-  affixTabOrder?: number;
-  /**
-   * Specific roles required to access
-   * @default []
-   */
-  authority?: string[];
-  /**
-   * Badge
-   */
-  badge?: string;
-  /**
-   * Badge type
-   */
-  badgeType?: 'dot' | 'normal';
-  /**
-   * Badge color
-   */
-  badgeVariants?:
-    | 'default'
-    | 'destructive'
-    | 'primary'
-    | 'success'
-    | 'warning'
-    | string;
-  /**
-   * The children of the current route are not displayed in the menu
-   * @default false
-   */
-  hideChildrenInMenu?: boolean;
-  /**
-   * The current route is not displayed in the breadcrumb
-   * @default false
-   */
-  hideInBreadcrumb?: boolean;
-  /**
-   * The current route is not displayed in the menu
-   * @default false
-   */
-  hideInMenu?: boolean;
-  /**
-   * The current route is not displayed in the tab
-   * @default false
-   */
-  hideInTab?: boolean;
-  /**
-   * Icon (menu/tab)
-   */
-  icon?: string;
-  /**
-   * iframe address
-   */
-  iframeSrc?: string;
-  /**
-   * Ignore permissions, can be accessed directly
-   * @default false
-   */
-  ignoreAccess?: boolean;
-  /**
-   * Enable KeepAlive cache
-   */
-  keepAlive?: boolean;
-  /**
-   * External link - jump path
-   */
-  link?: string;
-  /**
-   * Whether the route has been loaded
-   */
-  loaded?: boolean;
-  /**
-   * Maximum number of open tabs
-   * @default false
-   */
-  maxNumOfOpenTab?: number;
-  /**
-   * The menu can be seen, but access will be redirected to 403
-   */
-  menuVisibleWithForbidden?: boolean;
-  /**
-   * Open in a new window
-   */
-  openInNewWindow?: boolean;
-  /**
-   * Used for route -> menu sorting
-   */
-  order?: number;
-  /**
-   * Parameters carried by the menu
-   */
-  query?: Recordable;
-  /**
-   * Title name
-   */
-  title: string;
+    /**
+     * Active icon (menu)
+     */
+    activeIcon?: string;
+    /**
+     * The currently active menu, sometimes you don't want to activate the existing menu, use this to activate the parent menu
+     */
+    activePath?: string;
+    /**
+     * Whether to fix the tab
+     * @default false
+     */
+    affixTab?: boolean;
+    /**
+     * The order of fixed tabs
+     * @default 0
+     */
+    affixTabOrder?: number;
+    /**
+     * Specific roles required to access
+     * @default []
+     */
+    authority?: string[];
+    /**
+     * Badge
+     */
+    badge?: string;
+    /**
+     * Badge type
+     */
+    badgeType?: 'dot' | 'normal';
+    /**
+     * Badge color
+     */
+    badgeVariants?: 'default' | 'destructive' | 'primary' | 'success' | 'warning' | string;
+    /**
+     * The children of the current route are not displayed in the menu
+     * @default false
+     */
+    hideChildrenInMenu?: boolean;
+    /**
+     * The current route is not displayed in the breadcrumb
+     * @default false
+     */
+    hideInBreadcrumb?: boolean;
+    /**
+     * The current route is not displayed in the menu
+     * @default false
+     */
+    hideInMenu?: boolean;
+    /**
+     * The current route is not displayed in the tab
+     * @default false
+     */
+    hideInTab?: boolean;
+    /**
+     * Icon (menu/tab)
+     */
+    icon?: string;
+    /**
+     * iframe address
+     */
+    iframeSrc?: string;
+    /**
+     * Ignore permissions, can be accessed directly
+     * @default false
+     */
+    ignoreAccess?: boolean;
+    /**
+     * Enable KeepAlive cache
+     */
+    keepAlive?: boolean;
+    /**
+     * External link - jump path
+     */
+    link?: string;
+    /**
+     * Whether the route has been loaded
+     */
+    loaded?: boolean;
+    /**
+     * Maximum number of open tabs
+     * @default false
+     */
+    maxNumOfOpenTab?: number;
+    /**
+     * The menu can be seen, but access will be redirected to 403
+     */
+    menuVisibleWithForbidden?: boolean;
+    /**
+     * Open in a new window
+     */
+    openInNewWindow?: boolean;
+    /**
+     * Used for route -> menu sorting
+     */
+    order?: number;
+    /**
+     * Parameters carried by the menu
+     */
+    query?: Recordable;
+    /**
+     * Title name
+     */
+    title: string;
 }
 ```
 

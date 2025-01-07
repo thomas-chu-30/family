@@ -28,9 +28,9 @@
 
 ```json {3}
 {
-  "dependencies": {
-    "@vben/utils": "workspace:*"
-  }
+    "dependencies": {
+        "@vben/utils": "workspace:*"
+    }
 }
 ```
 
@@ -48,9 +48,9 @@ import { isString } from '@vben/utils';
 
 ```json {3}
 {
-  "imports": {
-    "#/*": "./src/*"
-  }
+    "imports": {
+        "#/*": "./src/*"
+    }
 }
 ```
 
@@ -58,12 +58,12 @@ import { isString } from '@vben/utils';
 
 ```json {5}
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "#/*": ["src/*"]
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "#/*": ["src/*"]
+        }
     }
-  }
 }
 ```
 

@@ -64,7 +64,7 @@ Based on the above configuration, we can use `/api` as the prefix for API reques
 import axios from 'axios';
 
 axios.get('/api/user').then((res) => {
-  console.log(res);
+    console.log(res);
 });
 ```
 
@@ -118,7 +118,7 @@ The project comes with a default basic request configuration based on `axios`, p
 import { requestClient } from '#/api/request';
 
 export async function getUserInfoApi() {
-  return requestClient.get<UserInfo>('/user/info');
+    return requestClient.get<UserInfo>('/user/info');
 }
 ```
 
@@ -128,20 +128,20 @@ export async function getUserInfoApi() {
 import { requestClient } from '#/api/request';
 
 export async function saveUserApi(user: UserInfo) {
-  return requestClient.post<UserInfo>('/user', user);
+    return requestClient.post<UserInfo>('/user', user);
 }
 
 export async function saveUserApi(user: UserInfo) {
-  return requestClient.put<UserInfo>('/user', user);
+    return requestClient.put<UserInfo>('/user', user);
 }
 
 export async function saveUserApi(user: UserInfo) {
-  const url = user.id ? `/user/${user.id}` : '/user/';
-  return requestClient.request<UserInfo>(url, {
-    data: user,
-    // OR PUT
-    method: user.id ? 'PUT' : 'POST',
-  });
+    const url = user.id ? `/user/${user.id}` : '/user/';
+    return requestClient.request<UserInfo>(url, {
+        data: user,
+        // OR PUT
+        method: user.id ? 'PUT' : 'POST',
+    });
 }
 ```
 
@@ -151,7 +151,7 @@ export async function saveUserApi(user: UserInfo) {
 import { requestClient } from '#/api/request';
 
 export async function deleteUserApi(user: UserInfo) {
-  return requestClient.delete<boolean>(`/user/${user.id}`, user);
+    return requestClient.delete<boolean>(`/user/${user.id}`, user);
 }
 ```
 
@@ -167,11 +167,7 @@ import type { HttpResponse } from '@vben/request';
 
 import { useAppConfig } from '@vben/hooks';
 import { preferences } from '@vben/preferences';
-import {
-  authenticateResponseInterceptor,
-  errorMessageResponseInterceptor,
-  RequestClient,
-} from '@vben/request';
+import { authenticateResponseInterceptor, errorMessageResponseInterceptor, RequestClient } from '@vben/request';
 import { useAccessStore } from '@vben/stores';
 
 import { message } from 'ant-design-vue';
@@ -183,89 +179,89 @@ import { refreshTokenApi } from './core';
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
 
 function createRequestClient(baseURL: string) {
-  const client = new RequestClient({
-    baseURL,
-  });
+    const client = new RequestClient({
+        baseURL,
+    });
 
-  /**
-   * Re-authentication Logic
-   */
-  async function doReAuthenticate() {
-    console.warn('Access token or refresh token is invalid or expired. ');
-    const accessStore = useAccessStore();
-    const authStore = useAuthStore();
-    accessStore.setAccessToken(null);
-    if (preferences.app.loginExpiredMode === 'modal') {
-      accessStore.setLoginExpired(true);
-    } else {
-      await authStore.logout();
+    /**
+     * Re-authentication Logic
+     */
+    async function doReAuthenticate() {
+        console.warn('Access token or refresh token is invalid or expired. ');
+        const accessStore = useAccessStore();
+        const authStore = useAuthStore();
+        accessStore.setAccessToken(null);
+        if (preferences.app.loginExpiredMode === 'modal') {
+            accessStore.setLoginExpired(true);
+        } else {
+            await authStore.logout();
+        }
     }
-  }
 
-  /**
-   * Refresh token Logic
-   */
-  async function doRefreshToken() {
-    const accessStore = useAccessStore();
-    const resp = await refreshTokenApi();
-    const newToken = resp.data;
-    accessStore.setAccessToken(newToken);
-    return newToken;
-  }
+    /**
+     * Refresh token Logic
+     */
+    async function doRefreshToken() {
+        const accessStore = useAccessStore();
+        const resp = await refreshTokenApi();
+        const newToken = resp.data;
+        accessStore.setAccessToken(newToken);
+        return newToken;
+    }
 
-  function formatToken(token: null | string) {
-    return token ? `Bearer ${token}` : null;
-  }
+    function formatToken(token: null | string) {
+        return token ? `Bearer ${token}` : null;
+    }
 
-  // Request Header Processing
-  client.addRequestInterceptor({
-    fulfilled: async (config) => {
-      const accessStore = useAccessStore();
+    // Request Header Processing
+    client.addRequestInterceptor({
+        fulfilled: async (config) => {
+            const accessStore = useAccessStore();
 
-      config.headers.Authorization = formatToken(accessStore.accessToken);
-      config.headers['Accept-Language'] = preferences.app.locale;
-      return config;
-    },
-  });
+            config.headers.Authorization = formatToken(accessStore.accessToken);
+            config.headers['Accept-Language'] = preferences.app.locale;
+            return config;
+        },
+    });
 
-  // Deal Response Data
-  client.addResponseInterceptor<HttpResponse>({
-    fulfilled: (response) => {
-      const { data: responseData, status } = response;
+    // Deal Response Data
+    client.addResponseInterceptor<HttpResponse>({
+        fulfilled: (response) => {
+            const { data: responseData, status } = response;
 
-      const { code, data } = responseData;
+            const { code, data } = responseData;
 
-      if (status >= 200 && status < 400 && code === 0) {
-        return data;
-      }
-      throw Object.assign({}, response, { response });
-    },
-  });
+            if (status >= 200 && status < 400 && code === 0) {
+                return data;
+            }
+            throw Object.assign({}, response, { response });
+        },
+    });
 
-  // Handling Token Expiration
-  client.addResponseInterceptor(
-    authenticateResponseInterceptor({
-      client,
-      doReAuthenticate,
-      doRefreshToken,
-      enableRefreshToken: preferences.app.enableRefreshToken,
-      formatToken,
-    }),
-  );
+    // Handling Token Expiration
+    client.addResponseInterceptor(
+        authenticateResponseInterceptor({
+            client,
+            doReAuthenticate,
+            doRefreshToken,
+            enableRefreshToken: preferences.app.enableRefreshToken,
+            formatToken,
+        }),
+    );
 
-  // Generic error handling; if none of the above error handling logic is triggered, it will fall back to this.
-  client.addResponseInterceptor(
-    errorMessageResponseInterceptor((msg: string, error) => {
-      // 这里可以根据业务进行定制,你可以拿到 error 内的信息进行定制化处理，根据不同的 code 做不同的提示，而不是直接使用 message.error 提示 msg
-      // 当前mock接口返回的错误字段是 error 或者 message
-      const responseData = error?.response?.data ?? {};
-      const errorMessage = responseData?.error ?? responseData?.message ?? '';
-      // 如果没有错误信息，则会根据状态码进行提示
-      message.error(errorMessage || msg);
-    }),
-  );
+    // Generic error handling; if none of the above error handling logic is triggered, it will fall back to this.
+    client.addResponseInterceptor(
+        errorMessageResponseInterceptor((msg: string, error) => {
+            // 这里可以根据业务进行定制,你可以拿到 error 内的信息进行定制化处理，根据不同的 code 做不同的提示，而不是直接使用 message.error 提示 msg
+            // 当前mock接口返回的错误字段是 error 或者 message
+            const responseData = error?.response?.data ?? {};
+            const errorMessage = responseData?.error ?? responseData?.message ?? '';
+            // 如果没有错误信息，则会根据状态码进行提示
+            message.error(errorMessage || msg);
+        }),
+    );
 
-  return client;
+    return client;
 }
 
 export const requestClient = createRequestClient(apiURL);
@@ -278,10 +274,7 @@ export const baseRequestClient = new RequestClient({ baseURL: apiURL });
 To handle multiple API endpoints, simply create multiple `requestClient` instances, as follows:
 
 ```ts
-const { apiURL, otherApiURL } = useAppConfig(
-  import.meta.env,
-  import.meta.env.PROD,
-);
+const { apiURL, otherApiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
 
 export const requestClient = createRequestClient(apiURL);
 
@@ -300,10 +293,10 @@ Adjust the `preferences.ts` in the corresponding application directory to ensure
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    enableRefreshToken: true,
-  },
+    // overrides
+    app: {
+        enableRefreshToken: true,
+    },
 });
 ```
 
@@ -312,19 +305,19 @@ Configure the `doRefreshToken` method in `src/api/request.ts` as follows:
 ```ts
 // Adjust this to your token format
 function formatToken(token: null | string) {
-  return token ? `Bearer ${token}` : null;
+    return token ? `Bearer ${token}` : null;
 }
 
 /**
  * Refresh token logic
  */
 async function doRefreshToken() {
-  const accessStore = useAccessStore();
-  // Adjust this to your refresh token API
-  const resp = await refreshTokenApi();
-  const newToken = resp.data;
-  accessStore.setAccessToken(newToken);
-  return newToken;
+    const accessStore = useAccessStore();
+    // Adjust this to your refresh token API
+    const resp = await refreshTokenApi();
+    const newToken = resp.data;
+    accessStore.setAccessToken(newToken);
+    return newToken;
 }
 ```
 

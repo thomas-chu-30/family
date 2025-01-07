@@ -44,9 +44,9 @@
 
 ```vue
 <template>
-  <!-- 注释也算一个节点 -->
-  <h1>text h1</h1>
-  <h2>text h2</h2>
+    <!-- 注释也算一个节点 -->
+    <h1>text h1</h1>
+    <h2>text h2</h2>
 </template>
 ```
 
@@ -54,10 +54,10 @@
 
 ```vue
 <template>
-  <div>
-    <h1>text h1</h1>
-    <h2>text h2</h2>
-  </div>
+    <div>
+        <h1>text h1</h1>
+        <h2>text h2</h2>
+    </div>
 </template>
 ```
 

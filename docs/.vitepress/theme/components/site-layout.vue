@@ -1,12 +1,5 @@
 <script lang="ts" setup>
-import {
-  computed,
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  watch,
-} from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 // import { useAntdDesignTokens } from '@vben/hooks';
 // import { initPreferences } from '@vben/preferences';
@@ -20,15 +13,15 @@ const route = useRoute();
 // const { tokens } = useAntdDesignTokens();
 
 const initZoom = () => {
-  // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' });
-  mediumZoom('.VPContent img', { background: 'var(--vp-c-bg)' });
+    // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' });
+    mediumZoom('.VPContent img', { background: 'var(--vp-c-bg)' });
 };
 
 const isDark = ref(true);
 
 watch(
-  () => route.path,
-  () => nextTick(() => initZoom()),
+    () => route.path,
+    () => nextTick(() => initZoom()),
 );
 
 // initPreferences({
@@ -36,61 +29,59 @@ watch(
 // });
 
 onMounted(() => {
-  initZoom();
+    initZoom();
 });
 
 // 使用该函数
 const observer = watchDarkModeChange((dark) => {
-  isDark.value = dark;
+    isDark.value = dark;
 });
 
 onBeforeUnmount(() => {
-  observer?.disconnect();
+    observer?.disconnect();
 });
 
 function watchDarkModeChange(callback: (isDark: boolean) => void) {
-  if (typeof window === 'undefined') {
-    return;
-  }
-  const htmlElement = document.documentElement;
+    if (typeof window === 'undefined') {
+        return;
+    }
+    const htmlElement = document.documentElement;
 
-  const observer = new MutationObserver(() => {
-    const isDark = htmlElement.classList.contains('dark');
-    callback(isDark);
-  });
+    const observer = new MutationObserver(() => {
+        const isDark = htmlElement.classList.contains('dark');
+        callback(isDark);
+    });
 
-  observer.observe(htmlElement, {
-    attributeFilter: ['class'],
-    attributes: true,
-  });
+    observer.observe(htmlElement, {
+        attributeFilter: ['class'],
+        attributes: true,
+    });
 
-  const initialIsDark = htmlElement.classList.contains('dark');
-  callback(initialIsDark);
+    const initialIsDark = htmlElement.classList.contains('dark');
+    callback(initialIsDark);
 
-  return observer;
+    return observer;
 }
 
 const tokenTheme = computed(() => {
-  const algorithm = isDark.value
-    ? [theme.darkAlgorithm]
-    : [theme.defaultAlgorithm];
+    const algorithm = isDark.value ? [theme.darkAlgorithm] : [theme.defaultAlgorithm];
 
-  return {
-    algorithm,
-    // token: tokens,
-  };
+    return {
+        algorithm,
+        // token: tokens,
+    };
 });
 </script>
 
 <template>
-  <ConfigProvider :theme="tokenTheme">
-    <Layout />
-  </ConfigProvider>
+    <ConfigProvider :theme="tokenTheme">
+        <Layout />
+    </ConfigProvider>
 </template>
 
 <style>
 .medium-zoom-overlay,
 .medium-zoom-image--opened {
-  z-index: 2147483647;
+    z-index: 2147483647;
 }
 </style>

@@ -14,9 +14,9 @@
 
 ```ts {3}
 export const overridesPreferences = defineOverridesPreferences({
-  app: {
-    locale: 'en-US',
-  },
+    app: {
+        locale: 'en-US',
+    },
 });
 ```
 
@@ -33,15 +33,15 @@ import { loadLocaleMessages } from '@vben/locales';
 import { updatePreferences } from '@vben/preferences';
 
 async function updateLocale(value: string) {
-  // 1. 更新偏好设置
-  const locale = value as SupportedLanguagesType;
-  updatePreferences({
-    app: {
-      locale,
-    },
-  });
-  // 2. 加载对应的语言包
-  await loadLocaleMessages(locale);
+    // 1. 更新偏好设置
+    const locale = value as SupportedLanguagesType;
+    updatePreferences({
+        app: {
+            locale,
+        },
+    });
+    // 2. 加载对应的语言包
+    await loadLocaleMessages(locale);
 }
 
 updateLocale('en-US');
@@ -94,10 +94,10 @@ import { $t } from '@vben/locales';
 const items = computed(() => [{ title: $t('about.desc') }]);
 </script>
 <template>
-  <div>{{ $t('about.desc') }}</div>
-  <template v-for="item in items.value">
-    <div>{{ item.title }}</div>
-  </template>
+    <div>{{ $t('about.desc') }}</div>
+    <template v-for="item in items.value">
+        <div>{{ item.title }}</div>
+    </template>
 </template>
 ```
 
@@ -109,34 +109,34 @@ const items = computed(() => [{ title: $t('about.desc') }]);
 - 在对应的应用内，找到 `src/locales/langs` 文件，新增对应的语言包 `zh-TW.json`
 - 在 `packages/constants/src/core.ts`内，新增对应的语言：
 
-  ```ts
-  export interface LanguageOption {
-    label: string;
-    value: 'en-US' | 'zh-CN'; // [!code --]
-    value: 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
-  }
-  export const SUPPORT_LANGUAGES: LanguageOption[] = [
-    {
-      label: '简体中文',
-      value: 'zh-CN',
-    },
-    {
-      label: 'English',
-      value: 'en-US',
-    },
-    {
-      label: '繁体中文', // [!code ++]
-      value: 'zh-TW', // [!code ++]
-    },
-  ];
-  ```
+    ```ts
+    export interface LanguageOption {
+        label: string;
+        value: 'en-US' | 'zh-CN'; // [!code --]
+        value: 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
+    }
+    export const SUPPORT_LANGUAGES: LanguageOption[] = [
+        {
+            label: '简体中文',
+            value: 'zh-CN',
+        },
+        {
+            label: 'English',
+            value: 'en-US',
+        },
+        {
+            label: '繁体中文', // [!code ++]
+            value: 'zh-TW', // [!code ++]
+        },
+    ];
+    ```
 
 - 在 `packages/locales/typing.ts`内，新增 Typescript 类型：
 
-  ```ts
-  export type SupportedLanguagesType = 'en-US' | 'zh-CN'; // [!code --]
-  export type SupportedLanguagesType = 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
-  ```
+    ```ts
+    export type SupportedLanguagesType = 'en-US' | 'zh-CN'; // [!code --]
+    export type SupportedLanguagesType = 'en-US' | 'zh-CN' | 'zh-TW'; // [!code ++]
+    ```
 
 到这里，你就可以在项目内使用新增的语言包了。
 
@@ -146,9 +146,9 @@ const items = computed(() => [{ title: $t('about.desc') }]);
 
 ```ts {3}
 export const overridesPreferences = defineOverridesPreferences({
-  widget: {
-    languageToggle: false,
-  },
+    widget: {
+        languageToggle: false,
+    },
 });
 ```
 
@@ -164,12 +164,12 @@ export const overridesPreferences = defineOverridesPreferences({
 
 ```ts {3-4}
 async function loadMessages(lang: SupportedLanguagesType) {
-  const [appLocaleMessages] = await Promise.all([
-    // 这里修改为远程接口加载数据即可
-    localesMap[lang](),
-    loadThirdPartyMessage(lang),
-  ]);
-  return appLocaleMessages.default;
+    const [appLocaleMessages] = await Promise.all([
+        // 这里修改为远程接口加载数据即可
+        localesMap[lang](),
+        loadThirdPartyMessage(lang),
+    ]);
+    return appLocaleMessages.default;
 }
 ```
 
@@ -183,26 +183,26 @@ async function loadMessages(lang: SupportedLanguagesType) {
  * @param lang
  */
 async function loadDayjsLocale(lang: SupportedLanguagesType) {
-  let locale;
-  switch (lang) {
-    case 'zh-CN': {
-      locale = await import('dayjs/locale/zh-cn');
-      break;
+    let locale;
+    switch (lang) {
+        case 'zh-CN': {
+            locale = await import('dayjs/locale/zh-cn');
+            break;
+        }
+        case 'en-US': {
+            locale = await import('dayjs/locale/en');
+            break;
+        }
+        // 默认使用英语
+        default: {
+            locale = await import('dayjs/locale/en');
+        }
     }
-    case 'en-US': {
-      locale = await import('dayjs/locale/en');
-      break;
+    if (locale) {
+        dayjs.locale(locale);
+    } else {
+        console.error(`Failed to load dayjs locale for ${lang}`);
     }
-    // 默认使用英语
-    default: {
-      locale = await import('dayjs/locale/en');
-    }
-  }
-  if (locale) {
-    dayjs.locale(locale);
-  } else {
-    console.error(`Failed to load dayjs locale for ${lang}`);
-  }
 }
 ```
 
@@ -214,14 +214,14 @@ async function loadDayjsLocale(lang: SupportedLanguagesType) {
 - 修改默认语言，见：[配置默认语言](#配置默认语言)
 - 关闭 `vue-i18n`的警告提示，在`src/locales/index.ts`文件内，修改`missingWarn`为`false`即可：
 
-  ```ts
-  async function setupI18n(app: App, options: LocaleSetupOptions = {}) {
-    await coreSetup(app, {
-      defaultLocale: preferences.app.locale,
-      loadMessages,
-      missingWarn: !import.meta.env.PROD, // [!code --]
-      missingWarn: false, // [!code ++]
-      ...options,
-    });
-  }
-  ```
+    ```ts
+    async function setupI18n(app: App, options: LocaleSetupOptions = {}) {
+        await coreSetup(app, {
+            defaultLocale: preferences.app.locale,
+            loadMessages,
+            missingWarn: !import.meta.env.PROD, // [!code --]
+            missingWarn: false, // [!code ++]
+            ...options,
+        });
+    }
+    ```

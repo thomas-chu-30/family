@@ -66,32 +66,32 @@ import { BasicLayout } from '#/layouts';
 import { $t } from '#/locales';
 
 const routes: RouteRecordRaw[] = [
-  {
-    component: BasicLayout,
-    meta: {
-      badgeType: 'dot',
-      badgeVariants: 'destructive',
-      icon: VBEN_LOGO_URL,
-      order: 9999,
-      title: $t('page.vben.title'),
-    },
-    name: 'VbenProject',
-    path: '/vben-admin',
-    redirect: '/vben-admin/about',
-    children: [
-      {
-        name: 'VbenAbout',
-        path: '/vben-admin/about',
-        component: () => import('#/views/_core/about/index.vue'),
+    {
+        component: BasicLayout,
         meta: {
-          badgeType: 'dot',
-          badgeVariants: 'destructive',
-          icon: 'lucide:copyright',
-          title: $t('page.vben.about'),
+            badgeType: 'dot',
+            badgeVariants: 'destructive',
+            icon: VBEN_LOGO_URL,
+            order: 9999,
+            title: $t('page.vben.title'),
         },
-      },
-    ],
-  },
+        name: 'VbenProject',
+        path: '/vben-admin',
+        redirect: '/vben-admin/about',
+        children: [
+            {
+                name: 'VbenAbout',
+                path: '/vben-admin/about',
+                component: () => import('#/views/_core/about/index.vue'),
+                meta: {
+                    badgeType: 'dot',
+                    badgeVariants: 'destructive',
+                    icon: 'lucide:copyright',
+                    title: $t('page.vben.about'),
+                },
+            },
+        ],
+    },
 ];
 
 export default routes;
@@ -117,107 +117,106 @@ import { BasicLayout } from '#/layouts';
 import { $t } from '#/locales';
 
 const routes: RouteRecordRaw[] = [
-  {
-    component: BasicLayout,
-    meta: {
-      icon: 'ic:baseline-view-in-ar',
-      keepAlive: true,
-      order: 1000,
-      title: $t('demos.title'),
-    },
-    name: 'Demos',
-    path: '/demos',
-    redirect: '/demos/access',
-    children: [
-      // 嵌套菜单
-      {
+    {
+        component: BasicLayout,
         meta: {
-          icon: 'ic:round-menu',
-          title: $t('demos.nested.title'),
+            icon: 'ic:baseline-view-in-ar',
+            keepAlive: true,
+            order: 1000,
+            title: $t('demos.title'),
         },
-        name: 'NestedDemos',
-        path: '/demos/nested',
-        redirect: '/demos/nested/menu1',
+        name: 'Demos',
+        path: '/demos',
+        redirect: '/demos/access',
         children: [
-          {
-            name: 'Menu1Demo',
-            path: '/demos/nested/menu1',
-            component: () => import('#/views/demos/nested/menu-1.vue'),
-            meta: {
-              icon: 'ic:round-menu',
-              keepAlive: true,
-              title: $t('demos.nested.menu1'),
-            },
-          },
-          {
-            name: 'Menu2Demo',
-            path: '/demos/nested/menu2',
-            meta: {
-              icon: 'ic:round-menu',
-              keepAlive: true,
-              title: $t('demos.nested.menu2'),
-            },
-            redirect: '/demos/nested/menu2/menu2-1',
-            children: [
-              {
-                name: 'Menu21Demo',
-                path: '/demos/nested/menu2/menu2-1',
-                component: () => import('#/views/demos/nested/menu-2-1.vue'),
+            // 嵌套菜单
+            {
                 meta: {
-                  icon: 'ic:round-menu',
-                  keepAlive: true,
-                  title: $t('demos.nested.menu2_1'),
+                    icon: 'ic:round-menu',
+                    title: $t('demos.nested.title'),
                 },
-              },
-            ],
-          },
-          {
-            name: 'Menu3Demo',
-            path: '/demos/nested/menu3',
-            meta: {
-              icon: 'ic:round-menu',
-              title: $t('demos.nested.menu3'),
-            },
-            redirect: '/demos/nested/menu3/menu3-1',
-            children: [
-              {
-                name: 'Menu31Demo',
-                path: 'menu3-1',
-                component: () => import('#/views/demos/nested/menu-3-1.vue'),
-                meta: {
-                  icon: 'ic:round-menu',
-                  keepAlive: true,
-                  title: $t('demos.nested.menu3_1'),
-                },
-              },
-              {
-                name: 'Menu32Demo',
-                path: 'menu3-2',
-                meta: {
-                  icon: 'ic:round-menu',
-                  title: $t('demos.nested.menu3_2'),
-                },
-                redirect: '/demos/nested/menu3/menu3-2/menu3-2-1',
+                name: 'NestedDemos',
+                path: '/demos/nested',
+                redirect: '/demos/nested/menu1',
                 children: [
-                  {
-                    name: 'Menu321Demo',
-                    path: '/demos/nested/menu3/menu3-2/menu3-2-1',
-                    component: () =>
-                      import('#/views/demos/nested/menu-3-2-1.vue'),
-                    meta: {
-                      icon: 'ic:round-menu',
-                      keepAlive: true,
-                      title: $t('demos.nested.menu3_2_1'),
+                    {
+                        name: 'Menu1Demo',
+                        path: '/demos/nested/menu1',
+                        component: () => import('#/views/demos/nested/menu-1.vue'),
+                        meta: {
+                            icon: 'ic:round-menu',
+                            keepAlive: true,
+                            title: $t('demos.nested.menu1'),
+                        },
                     },
-                  },
+                    {
+                        name: 'Menu2Demo',
+                        path: '/demos/nested/menu2',
+                        meta: {
+                            icon: 'ic:round-menu',
+                            keepAlive: true,
+                            title: $t('demos.nested.menu2'),
+                        },
+                        redirect: '/demos/nested/menu2/menu2-1',
+                        children: [
+                            {
+                                name: 'Menu21Demo',
+                                path: '/demos/nested/menu2/menu2-1',
+                                component: () => import('#/views/demos/nested/menu-2-1.vue'),
+                                meta: {
+                                    icon: 'ic:round-menu',
+                                    keepAlive: true,
+                                    title: $t('demos.nested.menu2_1'),
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        name: 'Menu3Demo',
+                        path: '/demos/nested/menu3',
+                        meta: {
+                            icon: 'ic:round-menu',
+                            title: $t('demos.nested.menu3'),
+                        },
+                        redirect: '/demos/nested/menu3/menu3-1',
+                        children: [
+                            {
+                                name: 'Menu31Demo',
+                                path: 'menu3-1',
+                                component: () => import('#/views/demos/nested/menu-3-1.vue'),
+                                meta: {
+                                    icon: 'ic:round-menu',
+                                    keepAlive: true,
+                                    title: $t('demos.nested.menu3_1'),
+                                },
+                            },
+                            {
+                                name: 'Menu32Demo',
+                                path: 'menu3-2',
+                                meta: {
+                                    icon: 'ic:round-menu',
+                                    title: $t('demos.nested.menu3_2'),
+                                },
+                                redirect: '/demos/nested/menu3/menu3-2/menu3-2-1',
+                                children: [
+                                    {
+                                        name: 'Menu321Demo',
+                                        path: '/demos/nested/menu3/menu3-2/menu3-2-1',
+                                        component: () => import('#/views/demos/nested/menu-3-2-1.vue'),
+                                        meta: {
+                                            icon: 'ic:round-menu',
+                                            keepAlive: true,
+                                            title: $t('demos.nested.menu3_2_1'),
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                    },
                 ],
-              },
-            ],
-          },
+            },
         ],
-      },
-    ],
-  },
+    },
 ];
 
 export default routes;
@@ -242,27 +241,27 @@ import { BasicLayout } from '#/layouts';
 import { $t } from '#/locales';
 
 const routes: RouteRecordRaw[] = [
-  {
-    component: BasicLayout,
-    meta: {
-      icon: 'mdi:home',
-      title: $t('page.home.title'),
-    },
-    name: 'Home',
-    path: '/home',
-    redirect: '/home/index',
-    children: [
-      {
-        name: 'HomeIndex',
-        path: '/home/index',
-        component: () => import('#/views/home/index.vue'),
+    {
+        component: BasicLayout,
         meta: {
-          icon: 'mdi:home',
-          title: $t('page.home.index'),
+            icon: 'mdi:home',
+            title: $t('page.home.title'),
         },
-      },
-    ],
-  },
+        name: 'Home',
+        path: '/home',
+        redirect: '/home/index',
+        children: [
+            {
+                name: 'HomeIndex',
+                path: '/home/index',
+                component: () => import('#/views/home/index.vue'),
+                meta: {
+                    icon: 'mdi:home',
+                    title: $t('page.home.index'),
+                },
+            },
+        ],
+    },
 ];
 
 export default routes;
@@ -274,9 +273,9 @@ export default routes;
 
 ```vue
 <template>
-  <div>
-    <h1>home page</h1>
-  </div>
+    <div>
+        <h1>home page</h1>
+    </div>
 </template>
 ```
 
@@ -290,14 +289,14 @@ export default routes;
 
 ```ts {5-8}
 const routes = [
-  {
-    name: 'HomeIndex',
-    path: '/home/index',
-    meta: {
-      icon: 'mdi:home',
-      title: $t('page.home.index'),
+    {
+        name: 'HomeIndex',
+        path: '/home/index',
+        meta: {
+            icon: 'mdi:home',
+            title: $t('page.home.index'),
+        },
     },
-  },
 ];
 ```
 
@@ -305,117 +304,111 @@ const routes = [
 
 ```ts
 interface RouteMeta {
-  /**
-   * 激活图标（菜单）
-   */
-  activeIcon?: string;
-  /**
-   * 当前激活的菜单，有时候不想激活现有菜单，需要激活父级菜单时使用
-   */
-  activePath?: string;
-  /**
-   * 是否固定标签页
-   * @default false
-   */
-  affixTab?: boolean;
-  /**
-   * 固定标签页的顺序
-   * @default 0
-   */
-  affixTabOrder?: number;
-  /**
-   * 需要特定的角色标识才可以访问
-   * @default []
-   */
-  authority?: string[];
-  /**
-   * 徽标
-   */
-  badge?: string;
-  /**
-   * 徽标类型
-   */
-  badgeType?: 'dot' | 'normal';
-  /**
-   * 徽标颜色
-   */
-  badgeVariants?:
-    | 'default'
-    | 'destructive'
-    | 'primary'
-    | 'success'
-    | 'warning'
-    | string;
-  /**
-   * 当前路由的子级在菜单中不展现
-   * @default false
-   */
-  hideChildrenInMenu?: boolean;
-  /**
-   * 当前路由在面包屑中不展现
-   * @default false
-   */
-  hideInBreadcrumb?: boolean;
-  /**
-   * 当前路由在菜单中不展现
-   * @default false
-   */
-  hideInMenu?: boolean;
-  /**
-   * 当前路由在标签页不展现
-   * @default false
-   */
-  hideInTab?: boolean;
-  /**
-   * 图标（菜单/tab）
-   */
-  icon?: string;
-  /**
-   * iframe 地址
-   */
-  iframeSrc?: string;
-  /**
-   * 忽略权限，直接可以访问
-   * @default false
-   */
-  ignoreAccess?: boolean;
-  /**
-   * 开启KeepAlive缓存
-   */
-  keepAlive?: boolean;
-  /**
-   * 外链-跳转路径
-   */
-  link?: string;
-  /**
-   * 路由是否已经加载过
-   */
-  loaded?: boolean;
-  /**
-   * 标签页最大打开数量
-   * @default false
-   */
-  maxNumOfOpenTab?: number;
-  /**
-   * 菜单可以看到，但是访问会被重定向到403
-   */
-  menuVisibleWithForbidden?: boolean;
-  /**
-   * 在新窗口打开
-   */
-  openInNewWindow?: boolean;
-  /**
-   * 用于路由->菜单排序
-   */
-  order?: number;
-  /**
-   * 菜单所携带的参数
-   */
-  query?: Recordable;
-  /**
-   * 标题名称
-   */
-  title: string;
+    /**
+     * 激活图标（菜单）
+     */
+    activeIcon?: string;
+    /**
+     * 当前激活的菜单，有时候不想激活现有菜单，需要激活父级菜单时使用
+     */
+    activePath?: string;
+    /**
+     * 是否固定标签页
+     * @default false
+     */
+    affixTab?: boolean;
+    /**
+     * 固定标签页的顺序
+     * @default 0
+     */
+    affixTabOrder?: number;
+    /**
+     * 需要特定的角色标识才可以访问
+     * @default []
+     */
+    authority?: string[];
+    /**
+     * 徽标
+     */
+    badge?: string;
+    /**
+     * 徽标类型
+     */
+    badgeType?: 'dot' | 'normal';
+    /**
+     * 徽标颜色
+     */
+    badgeVariants?: 'default' | 'destructive' | 'primary' | 'success' | 'warning' | string;
+    /**
+     * 当前路由的子级在菜单中不展现
+     * @default false
+     */
+    hideChildrenInMenu?: boolean;
+    /**
+     * 当前路由在面包屑中不展现
+     * @default false
+     */
+    hideInBreadcrumb?: boolean;
+    /**
+     * 当前路由在菜单中不展现
+     * @default false
+     */
+    hideInMenu?: boolean;
+    /**
+     * 当前路由在标签页不展现
+     * @default false
+     */
+    hideInTab?: boolean;
+    /**
+     * 图标（菜单/tab）
+     */
+    icon?: string;
+    /**
+     * iframe 地址
+     */
+    iframeSrc?: string;
+    /**
+     * 忽略权限，直接可以访问
+     * @default false
+     */
+    ignoreAccess?: boolean;
+    /**
+     * 开启KeepAlive缓存
+     */
+    keepAlive?: boolean;
+    /**
+     * 外链-跳转路径
+     */
+    link?: string;
+    /**
+     * 路由是否已经加载过
+     */
+    loaded?: boolean;
+    /**
+     * 标签页最大打开数量
+     * @default false
+     */
+    maxNumOfOpenTab?: number;
+    /**
+     * 菜单可以看到，但是访问会被重定向到403
+     */
+    menuVisibleWithForbidden?: boolean;
+    /**
+     * 在新窗口打开
+     */
+    openInNewWindow?: boolean;
+    /**
+     * 用于路由->菜单排序
+     */
+    order?: number;
+    /**
+     * 菜单所携带的参数
+     */
+    query?: Recordable;
+    /**
+     * 标题名称
+     */
+    title: string;
 }
 ```
 

@@ -9,11 +9,11 @@
 import { defineConfig } from '@vben/vite-config';
 
 export default defineConfig(async () => {
-  return {
-    application: {},
-    // vite配置，参考vite官方文档进行覆盖
-    vite: {},
-  };
+    return {
+        application: {},
+        // vite配置，参考vite官方文档进行覆盖
+        vite: {},
+    };
 });
 ```
 
@@ -24,10 +24,10 @@ export default defineConfig(async () => {
 import { defineConfig } from '@vben/vite-config';
 
 export default defineConfig(async () => {
-  return {
-    library: {},
-    // vite配置，参考vite官方文档进行覆盖
-    vite: {},
-  };
+    return {
+        library: {},
+        // vite配置，参考vite官方文档进行覆盖
+        vite: {},
+    };
 });
 ```

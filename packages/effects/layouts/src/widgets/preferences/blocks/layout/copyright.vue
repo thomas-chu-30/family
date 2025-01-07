@@ -13,32 +13,30 @@ const copyrightDate = defineModel<string>('copyrightDate');
 const copyrightIcp = defineModel<string>('copyrightIcp');
 const copyrightIcpLink = defineModel<string>('copyrightIcpLink');
 const copyrightCompanyName = defineModel<string>('copyrightCompanyName');
-const copyrightCompanySiteLink = defineModel<string>(
-  'copyrightCompanySiteLink',
-);
+const copyrightCompanySiteLink = defineModel<string>('copyrightCompanySiteLink');
 
 const itemDisabled = computed(() => props.disabled || !copyrightEnable.value);
 </script>
 
 <template>
-  <SwitchItem v-model="copyrightEnable" :disabled="disabled">
-    {{ $t('preferences.copyright.enable') }}
-  </SwitchItem>
+    <SwitchItem v-model="copyrightEnable" :disabled="disabled">
+        {{ $t('preferences.copyright.enable') }}
+    </SwitchItem>
 
-  <InputItem v-model="copyrightCompanyName" :disabled="itemDisabled">
-    {{ $t('preferences.copyright.companyName') }}
-  </InputItem>
-  <InputItem v-model="copyrightCompanySiteLink" :disabled="itemDisabled">
-    {{ $t('preferences.copyright.companySiteLink') }}
-  </InputItem>
-  <InputItem v-model="copyrightDate" :disabled="itemDisabled">
-    {{ $t('preferences.copyright.date') }}
-  </InputItem>
+    <InputItem v-model="copyrightCompanyName" :disabled="itemDisabled">
+        {{ $t('preferences.copyright.companyName') }}
+    </InputItem>
+    <InputItem v-model="copyrightCompanySiteLink" :disabled="itemDisabled">
+        {{ $t('preferences.copyright.companySiteLink') }}
+    </InputItem>
+    <InputItem v-model="copyrightDate" :disabled="itemDisabled">
+        {{ $t('preferences.copyright.date') }}
+    </InputItem>
 
-  <InputItem v-model="copyrightIcp" :disabled="itemDisabled">
-    {{ $t('preferences.copyright.icp') }}
-  </InputItem>
-  <InputItem v-model="copyrightIcpLink" :disabled="itemDisabled">
-    {{ $t('preferences.copyright.icpLink') }}
-  </InputItem>
+    <InputItem v-model="copyrightIcp" :disabled="itemDisabled">
+        {{ $t('preferences.copyright.icp') }}
+    </InputItem>
+    <InputItem v-model="copyrightIcpLink" :disabled="itemDisabled">
+        {{ $t('preferences.copyright.icpLink') }}
+    </InputItem>
 </template>

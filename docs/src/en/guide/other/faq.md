@@ -44,9 +44,9 @@ This issue occurs because route switching animations are enabled, and the corres
 
 ```vue
 <template>
-  <!-- Annotations are also considered a node -->
-  <h1>text h1</h1>
-  <h2>text h2</h2>
+    <!-- Annotations are also considered a node -->
+    <h1>text h1</h1>
+    <h2>text h2</h2>
 </template>
 ```
 
@@ -54,10 +54,10 @@ This issue occurs because route switching animations are enabled, and the corres
 
 ```vue
 <template>
-  <div>
-    <h1>text h1</h1>
-    <h2>text h2</h2>
-  </div>
+    <div>
+        <h1>text h1</h1>
+        <h2>text h2</h2>
+    </div>
 </template>
 ```
 

@@ -98,18 +98,18 @@ pnpm build
 
 - 参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 規則 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
 
-  - `feat` 新機能の追加
-  - `fix` 問題/バグの修正
-  - `style` コードスタイルに関連し、実行結果に影響しない
-  - `perf` 最適化/パフォーマンス向上
-  - `refactor` リファクタリング
-  - `revert` 変更の取り消し
-  - `test` テスト関連
-  - `docs` ドキュメント/注釈
-  - `chore` 依存関係の更新/スキャフォールディング設定の変更など
-  - `ci` 継続的インテグレーション
-  - `types` 型定義ファイルの変更
-  - `wip` 開発中
+    - `feat` 新機能の追加
+    - `fix` 問題/バグの修正
+    - `style` コードスタイルに関連し、実行結果に影響しない
+    - `perf` 最適化/パフォーマンス向上
+    - `refactor` リファクタリング
+    - `revert` 変更の取り消し
+    - `test` テスト関連
+    - `docs` ドキュメント/注釈
+    - `chore` 依存関係の更新/スキャフォールディング設定の変更など
+    - `ci` 継続的インテグレーション
+    - `types` 型定義ファイルの変更
+    - `wip` 開発中
 
 ## ブラウザサポート
 

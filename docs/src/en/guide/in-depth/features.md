@@ -14,10 +14,10 @@ Upon login timeout, it will redirect to the login page.
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    loginExpiredMode: 'page',
-  },
+    // overrides
+    app: {
+        loginExpiredMode: 'page',
+    },
 });
 ```
 
@@ -33,10 +33,10 @@ Configuration:
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    loginExpiredMode: 'modal',
-  },
+    // overrides
+    app: {
+        loginExpiredMode: 'modal',
+    },
 });
 ```
 
@@ -48,10 +48,10 @@ When enabled, the webpage title changes according to the route's `title`. You ca
 
 ```ts
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    dynamicTitle: true,
-  },
+    // overrides
+    app: {
+        dynamicTitle: true,
+    },
 });
 ```
 
@@ -63,10 +63,10 @@ When enabled, the webpage will display a watermark. You can enable or disable th
 
 ```ts
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    watermark: true,
-  },
+    // overrides
+    app: {
+        watermark: true,
+    },
 });
 ```
 
@@ -78,7 +78,7 @@ import { useWatermark } from '@vben/hooks';
 const { destroyWatermark, updateWatermark } = useWatermark();
 
 await updateWatermark({
-  // watermark content
-  content: 'hello my watermark',
+    // watermark content
+    content: 'hello my watermark',
 });
 ```

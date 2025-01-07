@@ -28,9 +28,9 @@ Importing a package in `package.json`:
 
 ```json {3}
 {
-  "dependencies": {
-    "@vben/utils": "workspace:*"
-  }
+    "dependencies": {
+        "@vben/utils": "workspace:*"
+    }
 }
 ```
 
@@ -48,9 +48,9 @@ In the project, you can see some paths starting with `#`, such as `#/api`, `#/vi
 
 ```json {3}
 {
-  "imports": {
-    "#/*": "./src/*"
-  }
+    "imports": {
+        "#/*": "./src/*"
+    }
 }
 ```
 
@@ -58,12 +58,12 @@ To make these aliases recognizable by the IDE, we also need to configure them in
 
 ```json {5}
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "#/*": ["src/*"]
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "#/*": ["src/*"]
+        }
     }
-  }
 }
 ```
 

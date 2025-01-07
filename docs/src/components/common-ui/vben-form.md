@@ -25,10 +25,7 @@ outline: deep
 ::: details ant design vue 表单适配器
 
 ```ts
-import type {
-  VbenFormSchema as FormSchema,
-  VbenFormProps,
-} from '@vben/common-ui';
+import type { VbenFormSchema as FormSchema, VbenFormProps } from '@vben/common-ui';
 
 import type { ComponentType } from './component';
 
@@ -36,33 +33,33 @@ import { setupVbenForm, useVbenForm as useForm, z } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 
 setupVbenForm<ComponentType>({
-  config: {
-    // ant design vue组件库默认都是 v-model:value
-    baseModelPropName: 'value',
-    // 一些组件是 v-model:checked 或者 v-model:fileList
-    modelPropNameMap: {
-      Checkbox: 'checked',
-      Radio: 'checked',
-      Switch: 'checked',
-      Upload: 'fileList',
+    config: {
+        // ant design vue组件库默认都是 v-model:value
+        baseModelPropName: 'value',
+        // 一些组件是 v-model:checked 或者 v-model:fileList
+        modelPropNameMap: {
+            Checkbox: 'checked',
+            Radio: 'checked',
+            Switch: 'checked',
+            Upload: 'fileList',
+        },
     },
-  },
-  defineRules: {
-    // 输入项目必填国际化适配
-    required: (value, _params, ctx) => {
-      if (value === undefined || value === null || value.length === 0) {
-        return $t('ui.formRules.required', [ctx.label]);
-      }
-      return true;
+    defineRules: {
+        // 输入项目必填国际化适配
+        required: (value, _params, ctx) => {
+            if (value === undefined || value === null || value.length === 0) {
+                return $t('ui.formRules.required', [ctx.label]);
+            }
+            return true;
+        },
+        // 选择项目必填国际化适配
+        selectRequired: (value, _params, ctx) => {
+            if (value === undefined || value === null) {
+                return $t('ui.formRules.selectRequired', [ctx.label]);
+            }
+            return true;
+        },
     },
-    // 选择项目必填国际化适配
-    selectRequired: (value, _params, ctx) => {
-      if (value === undefined || value === null) {
-        return $t('ui.formRules.selectRequired', [ctx.label]);
-      }
-      return true;
-    },
-  },
 });
 
 const useVbenForm = useForm<ComponentType>;
@@ -265,13 +262,13 @@ import { useVbenForm } from '#/adapter/form';
 // Form 为弹窗组件
 // formApi 为弹窗的方法
 const [Form, formApi] = useVbenForm({
-  // 属性
-  // 事件
+    // 属性
+    // 事件
 });
 </script>
 
 <template>
-  <Form />
+    <Form />
 </template>
 ```
 
@@ -328,22 +325,22 @@ useVbenForm 返回的第二个参数，是一个对象，包含了一些表单�
 
 ```ts
 export interface ActionButtonOptions {
-  /** 样式 */
-  class?: ClassType;
-  /** 是否禁用 */
-  disabled?: boolean;
-  /** 是否加载中 */
-  loading?: boolean;
-  /** 按钮大小 */
-  size?: ButtonVariantSize;
-  /** 按钮类型 */
-  variant?: ButtonVariants;
-  /** 是否显示 */
-  show?: boolean;
-  /** 按钮文本 */
-  text?: string;
-  /** 任意属性 */
-  [key: string]: any;
+    /** 样式 */
+    class?: ClassType;
+    /** 是否禁用 */
+    disabled?: boolean;
+    /** 是否加载中 */
+    loading?: boolean;
+    /** 按钮大小 */
+    size?: ButtonVariantSize;
+    /** 按钮类型 */
+    variant?: ButtonVariants;
+    /** 是否显示 */
+    show?: boolean;
+    /** 按钮文本 */
+    text?: string;
+    /** 任意属性 */
+    [key: string]: any;
 }
 ```
 
@@ -353,63 +350,63 @@ export interface ActionButtonOptions {
 
 ```ts
 export interface FormCommonConfig {
-  /**
-   * 所有表单项的props
-   */
-  componentProps?: ComponentProps;
-  /**
-   * 是否紧凑模式(移除表单底部为显示校验错误信息所预留的空间)。
-   * 在有设置校验规则的场景下，建议不要将其设置为true
-   * 默认为false。但用作表格的搜索表单时，默认为true
-   * @default false
-   */
-  compact?: boolean;
-  /**
-   * 所有表单项的控件样式
-   */
-  controlClass?: string;
-  /**
-   * 在表单项的Label后显示一个冒号
-   */
-  colon?: boolean;
-  /**
-   * 所有表单项的禁用状态
-   * @default false
-   */
-  disabled?: boolean;
-  /**
-   * 所有表单项的控件样式
-   * @default {}
-   */
-  formFieldProps?: Partial<typeof Field>;
-  /**
-   * 所有表单项的栅格布局
-   * @default ""
-   */
-  formItemClass?: string;
-  /**
-   * 隐藏所有表单项label
-   * @default false
-   */
-  hideLabel?: boolean;
-  /**
-   * 是否隐藏必填标记
-   * @default false
-   */
-  hideRequiredMark?: boolean;
-  /**
-   * 所有表单项的label样式
-   * @default ""
-   */
-  labelClass?: string;
-  /**
-   * 所有表单项的label宽度
-   */
-  labelWidth?: number;
-  /**
-   * 所有表单项的wrapper样式
-   */
-  wrapperClass?: string;
+    /**
+     * 所有表单项的props
+     */
+    componentProps?: ComponentProps;
+    /**
+     * 是否紧凑模式(移除表单底部为显示校验错误信息所预留的空间)。
+     * 在有设置校验规则的场景下，建议不要将其设置为true
+     * 默认为false。但用作表格的搜索表单时，默认为true
+     * @default false
+     */
+    compact?: boolean;
+    /**
+     * 所有表单项的控件样式
+     */
+    controlClass?: string;
+    /**
+     * 在表单项的Label后显示一个冒号
+     */
+    colon?: boolean;
+    /**
+     * 所有表单项的禁用状态
+     * @default false
+     */
+    disabled?: boolean;
+    /**
+     * 所有表单项的控件样式
+     * @default {}
+     */
+    formFieldProps?: Partial<typeof Field>;
+    /**
+     * 所有表单项的栅格布局
+     * @default ""
+     */
+    formItemClass?: string;
+    /**
+     * 隐藏所有表单项label
+     * @default false
+     */
+    hideLabel?: boolean;
+    /**
+     * 是否隐藏必填标记
+     * @default false
+     */
+    hideRequiredMark?: boolean;
+    /**
+     * 所有表单项的label样式
+     * @default ""
+     */
+    labelClass?: string;
+    /**
+     * 所有表单项的label宽度
+     */
+    labelWidth?: number;
+    /**
+     * 所有表单项的wrapper样式
+     */
+    wrapperClass?: string;
 }
 ```
 
@@ -418,31 +415,29 @@ export interface FormCommonConfig {
 ::: details FormSchema
 
 ```ts
-export interface FormSchema<
-  T extends BaseFormComponentType = BaseFormComponentType,
-> extends FormCommonConfig {
-  /** 组件 */
-  component: Component | T;
-  /** 组件参数 */
-  componentProps?: ComponentProps;
-  /** 默认值 */
-  defaultValue?: any;
-  /** 依赖 */
-  dependencies?: FormItemDependencies;
-  /** 描述 */
-  description?: string;
-  /** 字段名，也作为自定义插槽的名称 */
-  fieldName: string;
-  /** 帮助信息 */
-  help?: string;
-  /** 表单项 */
-  label?: string;
-  /** 自定义组件内部渲染  */
-  renderComponentContent?: RenderComponentContentType;
-  /** 字段规则 */
-  rules?: FormSchemaRuleType;
-  /** 后缀 */
-  suffix?: CustomRenderType;
+export interface FormSchema<T extends BaseFormComponentType = BaseFormComponentType> extends FormCommonConfig {
+    /** 组件 */
+    component: Component | T;
+    /** 组件参数 */
+    componentProps?: ComponentProps;
+    /** 默认值 */
+    defaultValue?: any;
+    /** 依赖 */
+    dependencies?: FormItemDependencies;
+    /** 描述 */
+    description?: string;
+    /** 字段名，也作为自定义插槽的名称 */
+    fieldName: string;
+    /** 帮助信息 */
+    help?: string;
+    /** 表单项 */
+    label?: string;
+    /** 自定义组件内部渲染  */
+    renderComponentContent?: RenderComponentContentType;
+    /** 字段规则 */
+    rules?: FormSchemaRuleType;
+    /** 后缀 */
+    suffix?: CustomRenderType;
 }
 ```
 
@@ -484,12 +479,12 @@ rules的值可以是字符串（预定义的校验规则名称），也可以是
 ```ts
 // 表示字段必填，默认会根据适配器的required进行国际化
 {
-  rules: 'required';
+    rules: 'required';
 }
 
 // 表示字段必填，默认会根据适配器的required进行国际化，用于下拉选择之类
 {
-  rules: 'selectRequired';
+    rules: 'selectRequired';
 }
 ```
 

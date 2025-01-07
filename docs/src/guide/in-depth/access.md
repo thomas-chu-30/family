@@ -25,11 +25,11 @@ outline: deep
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    // 默认值，可不填
-    accessMode: 'frontend',
-  },
+    // overrides
+    app: {
+        // 默认值，可不填
+        accessMode: 'frontend',
+    },
 });
 ```
 
@@ -85,10 +85,10 @@ authStore.setUserInfo(userInfo);
 import { defineOverridesPreferences } from '@vben/preferences';
 
 export const overridesPreferences = defineOverridesPreferences({
-  // overrides
-  app: {
-    accessMode: 'backend',
-  },
+    // overrides
+    app: {
+        accessMode: 'backend',
+    },
 });
 ```
 
@@ -98,12 +98,12 @@ export const overridesPreferences = defineOverridesPreferences({
 
 ```ts {5}
 async function generateAccess(options: GenerateMenuAndRoutesOptions) {
-  return await generateAccessible(preferences.app.accessMode, {
-    fetchMenuListAsync: async () => {
-      // 这个接口为后端返回的菜单数据
-      return await getAllMenus();
-    },
-  });
+    return await generateAccessible(preferences.app.accessMode, {
+        fetchMenuListAsync: async () => {
+            // 这个接口为后端返回的菜单数据
+            return await getAllMenus();
+        },
+    });
 }
 ```
 
@@ -113,37 +113,37 @@ async function generateAccess(options: GenerateMenuAndRoutesOptions) {
 
 ```ts
 const dashboardMenus = [
-  {
-    // 这里固定写死 BasicLayout，不可更改
-    component: 'BasicLayout',
-    meta: {
-      order: -1,
-      title: 'page.dashboard.title',
+    {
+        // 这里固定写死 BasicLayout，不可更改
+        component: 'BasicLayout',
+        meta: {
+            order: -1,
+            title: 'page.dashboard.title',
+        },
+        name: 'Dashboard',
+        path: '/',
+        redirect: '/analytics',
+        children: [
+            {
+                name: 'Analytics',
+                path: '/analytics',
+                // 这里为页面的路径，需要去掉 views/ 和 .vue
+                component: '/dashboard/analytics/index',
+                meta: {
+                    affixTab: true,
+                    title: 'page.dashboard.analytics',
+                },
+            },
+            {
+                name: 'Workspace',
+                path: '/workspace',
+                component: '/dashboard/workspace/index',
+                meta: {
+                    title: 'page.dashboard.workspace',
+                },
+            },
+        ],
     },
-    name: 'Dashboard',
-    path: '/',
-    redirect: '/analytics',
-    children: [
-      {
-        name: 'Analytics',
-        path: '/analytics',
-        // 这里为页面的路径，需要去掉 views/ 和 .vue
-        component: '/dashboard/analytics/index',
-        meta: {
-          affixTab: true,
-          title: 'page.dashboard.analytics',
-        },
-      },
-      {
-        name: 'Workspace',
-        path: '/workspace',
-        component: '/dashboard/workspace/index',
-        meta: {
-          title: 'page.dashboard.workspace',
-        },
-      },
-    ],
-  },
 ];
 ```
 
@@ -160,10 +160,7 @@ const dashboardMenus = [
 权限码为接口返回的权限码，通过权限码来判断按钮是否显示，逻辑在`src/store/auth`下：
 
 ```ts
-const [fetchUserInfoResult, accessCodes] = await Promise.all([
-  fetchUserInfo(),
-  getAccessCodes(),
-]);
+const [fetchUserInfoResult, accessCodes] = await Promise.all([fetchUserInfo(), getAccessCodes()]);
 
 userInfo = fetchUserInfoResult;
 authStore.setUserInfo(userInfo);
@@ -186,19 +183,19 @@ const { accessMode, hasAccessByCodes } = useAccess();
 </script>
 
 <template>
-  <!-- 需要指明 type="code" -->
-  <AccessControl :codes="['AC_100100']" type="code">
-    <Button> Super 账号可见 ["AC_1000001"] </Button>
-  </AccessControl>
-  <AccessControl :codes="['AC_100030']" type="code">
-    <Button> Admin 账号可见 ["AC_100010"] </Button>
-  </AccessControl>
-  <AccessControl :codes="['AC_1000001']" type="code">
-    <Button> User 账号可见 ["AC_1000001"] </Button>
-  </AccessControl>
-  <AccessControl :codes="['AC_100100', 'AC_100010']" type="code">
-    <Button> Super & Admin 账号可见 ["AC_100100","AC_1000001"] </Button>
-  </AccessControl>
+    <!-- 需要指明 type="code" -->
+    <AccessControl :codes="['AC_100100']" type="code">
+        <Button> Super 账号可见 ["AC_1000001"] </Button>
+    </AccessControl>
+    <AccessControl :codes="['AC_100030']" type="code">
+        <Button> Admin 账号可见 ["AC_100010"] </Button>
+    </AccessControl>
+    <AccessControl :codes="['AC_1000001']" type="code">
+        <Button> User 账号可见 ["AC_1000001"] </Button>
+    </AccessControl>
+    <AccessControl :codes="['AC_100100', 'AC_100010']" type="code">
+        <Button> Super & Admin 账号可见 ["AC_100100","AC_1000001"] </Button>
+    </AccessControl>
 </template>
 ```
 
@@ -212,18 +209,12 @@ const { hasAccessByCodes } = useAccess();
 </script>
 
 <template>
-  <Button v-if="hasAccessByCodes(['AC_100100'])">
-    Super 账号可见 ["AC_1000001"]
-  </Button>
-  <Button v-if="hasAccessByCodes(['AC_100030'])">
-    Admin 账号可见 ["AC_100010"]
-  </Button>
-  <Button v-if="hasAccessByCodes(['AC_1000001'])">
-    User 账号可见 ["AC_1000001"]
-  </Button>
-  <Button v-if="hasAccessByCodes(['AC_100100', 'AC_1000001'])">
-    Super & Admin 账号可见 ["AC_100100","AC_1000001"]
-  </Button>
+    <Button v-if="hasAccessByCodes(['AC_100100'])"> Super 账号可见 ["AC_1000001"] </Button>
+    <Button v-if="hasAccessByCodes(['AC_100030'])"> Admin 账号可见 ["AC_100010"] </Button>
+    <Button v-if="hasAccessByCodes(['AC_1000001'])"> User 账号可见 ["AC_1000001"] </Button>
+    <Button v-if="hasAccessByCodes(['AC_100100', 'AC_1000001'])">
+        Super & Admin 账号可见 ["AC_100100","AC_1000001"]
+    </Button>
 </template>
 ```
 
@@ -233,18 +224,12 @@ const { hasAccessByCodes } = useAccess();
 
 ```vue
 <template>
-  <Button class="mr-4" v-access:code="'AC_100100'">
-    Super 账号可见 'AC_100100'
-  </Button>
-  <Button class="mr-4" v-access:code="['AC_100030']">
-    Admin 账号可见 ["AC_100010"]
-  </Button>
-  <Button class="mr-4" v-access:code="['AC_1000001']">
-    User 账号可见 ["AC_1000001"]
-  </Button>
-  <Button class="mr-4" v-access:code="['AC_100100', 'AC_1000001']">
-    Super & Admin 账号可见 ["AC_100100","AC_1000001"]
-  </Button>
+    <Button class="mr-4" v-access:code="'AC_100100'"> Super 账号可见 'AC_100100' </Button>
+    <Button class="mr-4" v-access:code="['AC_100030']"> Admin 账号可见 ["AC_100010"] </Button>
+    <Button class="mr-4" v-access:code="['AC_1000001']"> User 账号可见 ["AC_1000001"] </Button>
+    <Button class="mr-4" v-access:code="['AC_100100', 'AC_1000001']">
+        Super & Admin 账号可见 ["AC_100100","AC_1000001"]
+    </Button>
 </template>
 ```
 
@@ -260,18 +245,18 @@ import { AccessControl } from '@vben/access';
 </script>
 
 <template>
-  <AccessControl :codes="['super']">
-    <Button> Super 角色可见 </Button>
-  </AccessControl>
-  <AccessControl :codes="['admin']">
-    <Button> Admin 角色可见 </Button>
-  </AccessControl>
-  <AccessControl :codes="['user']">
-    <Button> User 角色可见 </Button>
-  </AccessControl>
-  <AccessControl :codes="['super', 'admin']">
-    <Button> Super & Admin 角色可见 </Button>
-  </AccessControl>
+    <AccessControl :codes="['super']">
+        <Button> Super 角色可见 </Button>
+    </AccessControl>
+    <AccessControl :codes="['admin']">
+        <Button> Admin 角色可见 </Button>
+    </AccessControl>
+    <AccessControl :codes="['user']">
+        <Button> User 角色可见 </Button>
+    </AccessControl>
+    <AccessControl :codes="['super', 'admin']">
+        <Button> Super & Admin 角色可见 </Button>
+    </AccessControl>
 </template>
 ```
 
@@ -285,12 +270,10 @@ const { hasAccessByRoles } = useAccess();
 </script>
 
 <template>
-  <Button v-if="hasAccessByRoles(['super'])"> Super 账号可见 </Button>
-  <Button v-if="hasAccessByRoles(['admin'])"> Admin 账号可见 </Button>
-  <Button v-if="hasAccessByRoles(['user'])"> User 账号可见 </Button>
-  <Button v-if="hasAccessByRoles(['super', 'admin'])">
-    Super & Admin 账号可见
-  </Button>
+    <Button v-if="hasAccessByRoles(['super'])"> Super 账号可见 </Button>
+    <Button v-if="hasAccessByRoles(['admin'])"> Admin 账号可见 </Button>
+    <Button v-if="hasAccessByRoles(['user'])"> User 账号可见 </Button>
+    <Button v-if="hasAccessByRoles(['super', 'admin'])"> Super & Admin 账号可见 </Button>
 </template>
 ```
 
@@ -300,12 +283,10 @@ const { hasAccessByRoles } = useAccess();
 
 ```vue
 <template>
-  <Button class="mr-4" v-access:role="'super'"> Super 角色可见 </Button>
-  <Button class="mr-4" v-access:role="['super']"> Super 角色可见 </Button>
-  <Button class="mr-4" v-access:role="['admin']"> Admin 角色可见 </Button>
-  <Button class="mr-4" v-access:role="['user']"> User 角色可见 </Button>
-  <Button class="mr-4" v-access:role="['super', 'admin']">
-    Super & Admin 角色可见
-  </Button>
+    <Button class="mr-4" v-access:role="'super'"> Super 角色可见 </Button>
+    <Button class="mr-4" v-access:role="['super']"> Super 角色可见 </Button>
+    <Button class="mr-4" v-access:role="['admin']"> Admin 角色可见 </Button>
+    <Button class="mr-4" v-access:role="['user']"> User 角色可见 </Button>
+    <Button class="mr-4" v-access:role="['super', 'admin']"> Super & Admin 角色可见 </Button>
 </template>
 ```
