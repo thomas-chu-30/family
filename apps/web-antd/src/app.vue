@@ -26,6 +26,13 @@ const tokenTheme = computed(() => {
         token: tokens,
     };
 });
+
+const fetchData = async () => {
+    const data = await fetch('/nest-api').then((res) => res.json());
+    console.warn(data);
+};
+
+fetchData();
 </script>
 
 <template>

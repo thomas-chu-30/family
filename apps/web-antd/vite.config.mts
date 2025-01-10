@@ -13,6 +13,13 @@ export default defineConfig(async () => {
                         target: 'http://localhost:5320/api',
                         ws: true,
                     },
+                    '/nest-api': {
+                        changeOrigin: true,
+                        rewrite: (path) => path.replace(/^\/nest-api/, ''),
+                        // mock代理目标地址
+                        target: 'http://localhost:3000/nest-api',
+                        ws: true,
+                    },
                 },
             },
         },

@@ -95,7 +95,7 @@ export async function vue(): Promise<Linter.Config[]> {
                 'vue/max-attributes-per-line': 'off',
                 'vue/multi-word-component-names': 'off',
                 'vue/multiline-html-element-content-newline': 'error',
-                'vue/no-empty-pattern': 'error',
+                'vue/no-empty-pattern': 'off',
                 'vue/no-extra-parens': ['error', 'functions'],
                 'vue/no-irregular-whitespace': 'error',
                 'vue/no-loss-of-precision': 'error',
