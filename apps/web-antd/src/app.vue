@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import type { IPagination } from '@vben/types';
+
+import { computed, ref } from 'vue';
 
 import { useAntdDesignTokens } from '@vben/hooks';
 import { preferences, usePreferences } from '@vben/preferences';
@@ -27,9 +29,16 @@ const tokenTheme = computed(() => {
     };
 });
 
+const testData = ref<IPagination>({
+    page: 1,
+    page_size: 10,
+    total: 100,
+    total_pages: 10,
+});
+
 const fetchData = async () => {
-    const data = await fetch('/nest-api').then((res) => res.json());
-    console.warn(data);
+    const data = await fetch('/nest-api/pagination').then((res) => res.json());
+    testData.value = data;
 };
 
 fetchData();
