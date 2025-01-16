@@ -235,6 +235,9 @@ function navTo(nav: WorkbenchProjectItem | WorkbenchQuickNavItem) {
 
 <template>
     <div class="p-5">
+        <ol>
+            <li>各樣公告</li>
+        </ol>
         <WorkbenchHeader :avatar="userStore.userInfo?.avatar || preferences.app.defaultAvatar">
             <template #title> 早安, {{ userStore.userInfo?.realName }}, 開始您一天的工作吧！ </template>
             <template #description> 今日晴，20℃ - 32℃！ </template>

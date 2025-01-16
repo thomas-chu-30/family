@@ -7,8 +7,19 @@
         "forgetPassword": "Forget Password"
     },
     "dashboard": {
-        "title": "Dashboard",
+        "title": "Pretty Good Day",
         "analytics": "Analytics",
-        "workspace": "Workspace"
+        "workspace": "Workspace",
+        "user": "User"
+    },
+    "adminDashboard": {
+        "title": "Admin Dashboard",
+        "user": "User"
+    },
+    "sundaySchool": {
+        "title": "Sunday School",
+        "attendance": "Attendance",
+        "announcement": "Announcement",
+        "announcementEdit": "Announcement Edit"
     }
 }

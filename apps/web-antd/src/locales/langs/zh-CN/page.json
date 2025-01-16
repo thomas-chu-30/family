@@ -7,8 +7,19 @@
         "forgetPassword": "忘記密碼"
     },
     "dashboard": {
-        "title": "概覽",
+        "title": "美好一整天",
         "analytics": "分析頁",
-        "workspace": "工作台"
+        "workspace": "工作台",
+        "user": "用戶"
+    },
+    "adminDashboard": {
+        "title": "管理員概覽",
+        "user": "用戶"
+    },
+    "sundaySchool": {
+        "title": "主日學",
+        "attendance": "點名",
+        "announcement": "公告",
+        "announcementEdit": "公告編輯"
     }
 }
