@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Recordable } from '@vben/types';
 
+import { Lineicons } from '@vben/icons';
 import type { VbenFormSchema } from '@vben-core/form-ui';
 
 import type { AuthenticationProps } from './types';
@@ -31,12 +32,12 @@ const props = withDefaults(defineProps<Props>(), {
     loading: false,
     qrCodeLoginPath: '/auth/qrcode-login',
     registerPath: '/auth/register',
-    showCodeLogin: true,
-    showForgetPassword: true,
-    showQrcodeLogin: true,
-    showRegister: true,
-    showRememberMe: true,
-    showThirdPartyLogin: true,
+    showCodeLogin: false,
+    showForgetPassword: false,
+    showQrcodeLogin: false,
+    showRegister: false,
+    showRememberMe: false,
+    showThirdPartyLogin: false,
     submitButtonText: '',
     subTitle: '',
     title: '',
@@ -45,6 +46,8 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
     submit: [Recordable<any>];
 }>();
+
+console.error('emit', emit);
 
 const [Form, formApi] = useVbenForm(
     reactive({
@@ -56,6 +59,8 @@ const [Form, formApi] = useVbenForm(
         showDefaultActions: false,
     }),
 );
+
+console.error('formApi', Form);
 const router = useRouter();
 
 const REMEMBER_ME_KEY = `REMEMBER_ME_USERNAME_${location.hostname}`;
@@ -63,14 +68,37 @@ const REMEMBER_ME_KEY = `REMEMBER_ME_USERNAME_${location.hostname}`;
 const localUsername = localStorage.getItem(REMEMBER_ME_KEY) || '';
 
 const rememberMe = ref(!!localUsername);
-
+interface LineAuthUrlObj {
+    client_id: string;
+    redirect_uri: string;
+    state: string;
+    scope: string;
+}
+const paramsObj: LineAuthUrlObj = {
+    client_id: '2006760974',
+    redirect_uri: 'http://localhost:5666/line-login',
+    state: '1178',
+    scope: 'profile openid',
+};
+const lineAuthUrl = computed(() => {
+    let url = 'https://access.line.me/oauth2/v2.1/authorize?response_type=code';
+    let params = '';
+    Object.keys(paramsObj).forEach((key) => {
+        const value = paramsObj[key as keyof LineAuthUrlObj];
+        if (value) {
+            params += `&${key}=${value}`;
+        }
+    });
+    return url + params;
+});
 async function handleSubmit() {
-    const { valid } = await formApi.validate();
-    const values = await formApi.getValues();
-    if (valid) {
-        localStorage.setItem(REMEMBER_ME_KEY, rememberMe.value ? values?.username : '');
-        emit('submit', values);
-    }
+    window.location.href = lineAuthUrl.value;
+    // const { valid } = await formApi.validate();
+    // const values = await formApi.getValues();
+    // if (valid) {
+    //     localStorage.setItem(REMEMBER_ME_KEY, rememberMe.value ? values?.username : '');
+    //     emit('submit', values);
+    // }
 }
 
 function handleGo(path: string) {
@@ -105,7 +133,7 @@ defineExpose({
             </Title>
         </slot>
 
-        <Form />
+        <!-- <Form /> -->
 
         <div v-if="showRememberMe || showForgetPassword" class="mb-6 flex justify-between">
             <div class="flex-center">
@@ -124,9 +152,10 @@ defineExpose({
             }"
             :loading="loading"
             aria-label="login"
-            class="w-full"
+            class="flex w-full items-center justify-center"
             @click="handleSubmit"
         >
+            <Lineicons class="mr-2 text-xl" />
             {{ submitButtonText || $t('common.login') }}
         </VbenButton>
 

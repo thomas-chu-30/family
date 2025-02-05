@@ -9,17 +9,21 @@
     "dashboard": {
         "title": "Pretty Good Day",
         "analytics": "Analytics",
-        "workspace": "Workspace",
+        "workspace": "Start a day",
         "user": "User"
     },
     "adminDashboard": {
         "title": "Admin Dashboard",
-        "user": "User"
+        "user": "User",
+        "family": "Family List",
+        "familyAnnouncementEdit": "Family Announcement Edit",
+        "role": "Role Edit"
     },
     "sundaySchool": {
         "title": "Sunday School",
         "attendance": "Attendance",
         "announcement": "Announcement",
-        "announcementEdit": "Announcement Edit"
+        "announcementEdit": "Announcement Edit",
+        "teachers": "Teachers"
     }
 }

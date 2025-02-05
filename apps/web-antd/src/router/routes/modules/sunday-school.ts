@@ -40,6 +40,15 @@ const routes: RouteRecordRaw[] = [
                     title: $t('page.sundaySchool.attendance'),
                 },
             },
+            {
+                name: 'SundaySchoolTeachers',
+                path: 'teachers',
+                component: () => import('#/views/sunday-school/teachers.vue'),
+                meta: {
+                    icon: 'lucide:user',
+                    title: $t('page.sundaySchool.teachers'),
+                },
+            },
         ],
     },
 ];

@@ -30,6 +30,14 @@ const coreRoutes: RouteRecordRaw[] = [
         redirect: DEFAULT_HOME_PATH,
     },
     {
+        name: 'LineLogin',
+        path: '/line-login',
+        component: () => import('#/views/_core/line-login.vue'),
+        meta: {
+            title: $t('page.auth.lineLogin'),
+        },
+    },
+    {
         component: AuthPageLayout,
         meta: {
             hideInTab: true,

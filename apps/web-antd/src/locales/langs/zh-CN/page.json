@@ -9,17 +9,21 @@
     "dashboard": {
         "title": "美好一整天",
         "analytics": "分析頁",
-        "workspace": "工作台",
+        "workspace": "開啟一天",
         "user": "用戶"
     },
     "adminDashboard": {
         "title": "管理員概覽",
-        "user": "用戶"
+        "user": "用戶",
+        "family": "家庭清單",
+        "familyAnnouncementEdit": "家庭公告編輯",
+        "role": "角色設定"
     },
     "sundaySchool": {
         "title": "主日學",
         "attendance": "點名",
         "announcement": "公告",
-        "announcementEdit": "公告編輯"
+        "announcementEdit": "公告編輯",
+        "teachers": "老師清單"
     }
 }

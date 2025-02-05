@@ -6,5 +6,6 @@ import { requestClient } from '#/api/request';
  * 获取用户信息
  */
 export async function getUserInfoApi() {
+    console.log('getUserInfoApi');
     return requestClient.get<UserInfo>('/user/info');
 }

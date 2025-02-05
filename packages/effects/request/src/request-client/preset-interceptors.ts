@@ -92,6 +92,8 @@ export const errorMessageResponseInterceptor = (makeErrorMessage?: MakeErrorMess
             let errorMessage = '';
             const status = error?.response?.status;
 
+            console.log(status);
+            console.log(error);
             switch (status) {
                 case 400: {
                     errorMessage = $t('ui.fallback.http.badRequest');

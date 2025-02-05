@@ -105,6 +105,8 @@ function setupAccessGuard(router: Router) {
         const redirectPath = (from.query.redirect ??
             (to.path === DEFAULT_HOME_PATH ? userInfo.homePath || DEFAULT_HOME_PATH : to.fullPath)) as string;
 
+        console.log('userInfo.homePath', userInfo.homePath);
+        console.log('redirectPath', redirectPath);
         return {
             ...router.resolve(decodeURIComponent(redirectPath)),
             replace: true,

@@ -1,11 +1,19 @@
 import type { IPagination } from '@vben/types';
 
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
 import { AppService } from './app.service';
 
+interface IUser {
+    userId: string;
+    displayName: string;
+    statusMessage: string;
+    pictureUrl: string;
+}
+
 @Controller('')
 export class AppController {
+    user: IUser;
     constructor(private readonly appService: AppService) {}
 
     @Get()
@@ -21,5 +29,16 @@ export class AppController {
             total: 100,
             total_pages: 10,
         };
+    }
+
+    @Post('user')
+    getPagination2(@Body() body: IUser) {
+        this.user = body;
+        return body;
+    }
+
+    @Get('user')
+    getUser() {
+        return this.user;
     }
 }

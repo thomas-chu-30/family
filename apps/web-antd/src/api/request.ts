@@ -15,6 +15,7 @@ import { useAuthStore } from '#/store';
 import { refreshTokenApi } from './core';
 
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
+console.log(apiURL);
 
 function createRequestClient(baseURL: string) {
     const client = new RequestClient({
