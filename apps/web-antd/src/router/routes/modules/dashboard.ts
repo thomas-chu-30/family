@@ -44,6 +44,18 @@ const routes: RouteRecordRaw[] = [
                     title: 'HopeChurch',
                 },
             },
+            {
+                name: 'DonationReport',
+                path: '/donation-report',
+                component: IFrameView,
+                meta: {
+                    icon: 'lucide:church',
+                    iframeSrc:
+                        'https://docs.google.com/forms/d/e/1FAIpQLSdzNHbjXuCyABCWfT6g7JIpIgwbKExoXdrufs-6vf1-3zO-BA/viewform',
+                    // keepAlive: true,
+                    title: '奉獻回報',
+                },
+            },
         ],
     },
 ];
