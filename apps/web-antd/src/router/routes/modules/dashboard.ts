@@ -45,6 +45,17 @@ const routes: RouteRecordRaw[] = [
                 },
             },
             {
+                name: 'Thread',
+                path: '/thread',
+                component: IFrameView,
+                meta: {
+                    icon: 'lucide:thread',
+                    iframeSrc: 'https://cgmfamily.tw/login',
+                    // keepAlive: true,
+                    title: 'Thread',
+                },
+            },
+            {
                 name: 'DonationReport',
                 path: '/donation-report',
                 component: IFrameView,
