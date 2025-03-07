@@ -150,3 +150,9 @@ pnpm build
 ## License
 
 [MIT © Vben-2020](./LICENSE)
+
+
+
+
+
+如果要新增專案，需要把 script 的加上 dev 在 npm run dev 的時候，會有東西可以選
